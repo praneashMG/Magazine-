@@ -87,7 +87,10 @@
             transition-delay: 200ms;
         }
 
-        /* Mobile Drawer transition handling (Included for variable consistency) */
+        /* Mobile Drawer transition handling (Custom utility class for top-hiding) */
+        .translate-y-[-100%] {
+            transform: translateY(-100%);
+        }
         
         /* Custom Styles for Main Layout Sections (Included for variable consistency) */
         .section-heading {
@@ -116,7 +119,6 @@
     </style>
 </head>
 <body class="antialiased">
-
     <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-16">
 
@@ -141,12 +143,31 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="nav-link">Categories</a>
-                    <a href="#" class="nav-link">Trending</a>
-                    <a href="#" class="nav-link">Authors</a>
-                    <a href="#" class="nav-link">About</a>
-                    <a href="#" class="nav-link">Contact</a>
-                    <a href="#" class="nav-link">Dashboard</a>
+                    <a href="Magazine.html" class="nav-link text-primary-text">Magazine</a>
+                    <a href="blog.html" class="nav-link text-primary-text">Trending</a>
+                    <a href="ABOUT.HTML" class="nav-link text-primary-text">About Us</a>
+                    <a href="contact.html" class="nav-link text-primary-text">Contact</a>
+                    <div class="relative group">
+                        <button class="nav-link flex items-center text-primary-text">
+                            Dashboard
+                            <svg class="w-3 h-3 ml-1 transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div class="absolute hidden group-hover:block
+                            bg-background border border-border mt-1 rounded-lg shadow-xl min-w-[170px] z-60 overflow-hidden
+                            transition-all duration-150 delay-150">
+
+                            <a href="userdash.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">
+                                User Dashboard
+                            </a>
+                            <a href="dashboard.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">
+                                Admin Dashboard
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="w-px h-6 bg-border mx-3"></div>
@@ -155,9 +176,7 @@
                     <button id="search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Search" title="Open Search">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
-                    <button class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Bookmarks" title="Bookmarks">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"></path></svg>
-                    </button>
+                    
                     <button class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="User Profile" title="User Profile">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </button>
@@ -165,167 +184,190 @@
                         <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                         <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     </button>
-                    <select id="lang-switcher" 
-                        class="bg-background border border-border text-primary-text text-sm rounded-md py-1 px-2 focus:ring-accent focus:border-accent"
-                        aria-label="Select Language" title="Select Language"> <option value="en">EN</option>
-                        <option value="ar">AR</option>
-                    </select>
+                    <button id="lang-icon" 
+    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+    title="Change Language"
+    aria-label="Change Language"
+>
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
+    </svg>
+</button>
+
+                    
                 </div>
             </div>
-
             <div class="flex items-center lg:hidden space-x-4 rtl:space-x-reverse rtl:ml-4">
                 <button id="mobile-search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Search" title="Open Search">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
+                  <button id="mobile-theme-toggle" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
+        <!-- Sun Icon (Light Mode) -->
+        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+
+        <!-- Moon Icon (Dark Mode) -->
+        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+    </button>
                 <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Menu" title="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
+              
+                
+                
             </div>
         </nav>
     </header>
- <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gray-50" id="magazineDashboard">
 
-    <header class="text-center mb-16">
-        <span class="text-sm font-semibold uppercase tracking-widest text-indigo-600">The Modern Reader</span>
-        <h1 class="text-6xl font-extrabold text-gray-900 mt-2">
-            Global Knowledge Feed
-        </h1>
-    </header>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-background" id="magazineDashboard">
 
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+        <header class="text-center mb-16">
+            <span class="text-sm font-semibold uppercase tracking-widest text-indigo-600">The Modern Reader</span>
+            <h1 class="text-6xl font-extrabold text-primary-text mt-2">
+                Global Knowledge Feed
+            </h1>
+        </header>
 
-        <section class="lg:col-span-2 bg-white rounded-3xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.01]">
-            <h2 class="sr-only">Featured Article</h2>
-            <a href="magazine-details.html?article=ai-future" class="block">
-                <img src="images/ai-future.jpg" alt="A depiction of complex neural networks, symbolizing AI" class="w-full h-96 object-cover" />
-                <div class="p-8">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <span class="px-3 py-1 text-xs font-bold text-white bg-red-600 rounded-full uppercase">Featured</span>
-                        <span class="text-sm text-gray-500">October 15, 2025 · 8 min read</span>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+
+            <section class="lg:col-span-2 bg-background rounded-3xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.01]">
+                <h2 class="sr-only">Featured Article</h2>
+                <a href="magazine-details.html?article=ai-future" class="block">
+                    <img src="https://e-cis.info/upload/iblock/e25/2935v4sxt3ud55cz5dm84mz0u4f2sb1z.jpg" alt="A depiction of complex neural networks, symbolizing AI" class="w-full h-96 object-cover" />
+                    <div class="p-8">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="px-3 py-1 text-xs font-bold text-white bg-red-600 rounded-full uppercase">Featured</span>
+                            <span class="text-sm text-secondary-text">October 15, 2025 · 8 min read</span>
+                        </div>
+                        <h3 class="text-4xl font-extrabold text-primary-text leading-tight hover:text-indigo-600 transition">
+                            The Future of AI: New Era of Thinking Machines
+                        </h3>
+                        <p class="text-secondary-text mt-4 text-base">
+                            A deep dive into the revolutionary advancements in large language models and autonomous systems. What does true machine consciousness look like?
+                        </p>
+                        <span class="mt-6 inline-block text-indigo-600 font-semibold group-hover:underline">
+                            Read Full Article →
+                        </span>
                     </div>
-                    <h3 class="text-4xl font-extrabold text-gray-900 leading-tight hover:text-indigo-600 transition">
-                        The Future of AI: New Era of Thinking Machines
-                    </h3>
-                    <p class="text-gray-600 mt-4 text-base">
-                        A deep dive into the revolutionary advancements in large language models and autonomous systems. What does true machine consciousness look like?
-                    </p>
-                    <span class="mt-6 inline-block text-indigo-600 font-semibold group-hover:underline">
-                        Read Full Article →
-                    </span>
-                </div>
-            </a>
-        </section>
-        
-        <section class="lg:col-span-2 space-y-8">
-            <h2 class="text-2xl font-bold text-gray-900 border-b pb-3 mb-4">🔥 Trending Insights</h2>
+                </a>
+            </section>
             
-            <a href="magazine-details.html?article=urban-growth" class="flex p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 group">
-                <img src="images/urban.jpg" alt="Modern city skyline with green spaces" class="w-24 h-24 object-cover rounded-lg flex-shrink-0 mr-4" />
-                <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-green-600">Urban Design</span>
-                    <h4 class="text-xl font-bold text-gray-900 mt-1 group-hover:text-indigo-600 transition">
-                        Urban Growth & The Rise of Intelligent Cities
-                    </h4>
-                    <p class="text-sm text-gray-500 mt-1">
-                        How data and IoT are reshaping infrastructure in mega-cities.
-                    </p>
+            <section class="lg:col-span-2 space-y-8">
+                <h2 class="text-2xl font-bold text-primary-text border-b border-border pb-3 mb-4">🔥 Trending Insights</h2>
+                
+                <a href="magazine-details.html?article=urban-growth" class="flex p-6 bg-background rounded-xl shadow-lg hover:shadow-xl transition duration-300 group">
+                    <img src="https://i.ytimg.com/vi/9bj9Ylhf9e0/maxresdefault.jpg" alt="Modern city skyline with green spaces" class="w-24 h-24 object-cover rounded-lg flex-shrink-0 mr-4" />
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-green-600">Urban Design</span>
+                        <h4 class="text-xl font-bold text-primary-text mt-1 group-hover:text-indigo-600 transition">
+                            Urban Growth & The Rise of Intelligent Cities
+                        </h4>
+                        <p class="text-sm text-secondary-text mt-1">
+                            How data and IoT are reshaping infrastructure in mega-cities.
+                        </p>
+                    </div>
+                </a>
+                
+                <a href="magazine-details.html?article=space-economy" class="flex p-6 bg-background rounded-xl shadow-lg hover:shadow-xl transition duration-300 group">
+                    <img src="https://t4.ftcdn.net/jpg/12/03/19/17/360_F_1203191729_qzmwAliBBMf7N42bZk86MHszzIH4IRfQ.jpg" alt="A satellite orbiting the Earth" class="w-24 h-24 object-cover rounded-lg flex-shrink-0 mr-4" />
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600">Space Economy</span>
+                        <h4 class="text-xl font-bold text-primary-text mt-1 group-hover:text-indigo-600 transition">
+                            The Billion-Dollar Race to Orbit: Commercial Space Travel
+                        </h4>
+                        <p class="text-sm text-secondary-text mt-1">
+                            Analyzing the disruptive players and technologies driving the new space race.
+                        </p>
+                    </div>
+                </a>
+            </section>
+        </div>
+
+        <hr class="my-16 border-border">
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+            <section class="lg:col-span-3">
+                <h2 class="text-3xl font-bold text-primary-text mb-6">✨ Recent Releases</h2>
+                <div class="grid grid-cols-2 gap-4 md:gap-8 xl:grid-cols-4"> 
+                    
+                    <a href="magazine-details.html?article=climate-shift" class="block bg-background rounded-xl shadow-md p-5 group hover:shadow-lg transition">
+                        <img src="https://mma.prnewswire.com/media/1930674/Global_CSI_10_27_2022.jpg?p=facebook" alt="A stark landscape" class="h-32 w-full object-cover rounded-lg mb-4" />
+                        <span class="text-xs font-semibold uppercase text-yellow-600">Environment</span>
+                        <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition text-primary-text">
+                            Climate Shift: Next 20 Years
+                        </h4>
+                        <p class="text-xs text-secondary-text mt-2">
+                            Aug 2025 · By The Editorial Team
+                        </p>
+                    </a>
+
+                    <a href="magazine-details.html?article=genetic-editing" class="block bg-background rounded-xl shadow-md p-5 group hover:shadow-lg transition">
+                        <img src="https://media.nature.com/lw1200/magazine-assets/d44151-024-00076-w/d44151-024-00076-w_27128528.jpg" alt="A stylized DNA strand" class="h-32 w-full object-cover rounded-lg mb-4" />
+                        <span class="text-xs font-semibold uppercase text-purple-600">BioTech</span>
+                        <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition text-primary-text">
+                            CRISPR & The Ethics of Genetic Editing
+                        </h4>
+                        <p class="text-xs text-secondary-text mt-2">
+                            Jul 2025 · By Dr. Chen
+                        </p>
+                    </a>
+                    
+                    <a href="magazine-details.html?article=crypto-finance" class="block bg-background rounded-xl shadow-md p-5 group hover:shadow-lg transition">
+                        <img src="https://nypost.com/wp-content/uploads/sites/2/2025/05/104964053.jpg?resize=150" alt="A digital currency symbol" class="h-32 w-full object-cover rounded-lg mb-4" />
+                        <span class="text-xs font-semibold uppercase text-pink-600">Finance</span>
+                        <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition text-primary-text">
+                            The Decentralized Ledger: Crypto's Next Phase
+                        </h4>
+                        <p class="text-xs text-secondary-text mt-2">
+                            Jun 2025 · By Maria Lopez
+                        </p>
+                    </a>
+                    
+                    <a href="magazine-details.html?article=digital-art" class="block bg-background rounded-xl shadow-md p-5 group hover:shadow-lg transition">
+                        <img src="https://cdn.artificialpaintings.com/uploads/uploads/2024/06/70_digital_art_vs_traditional_art.webp" alt="Abstract digital artwork" class="h-32 w-full object-cover rounded-lg mb-4" />
+                        <span class="text-xs font-semibold uppercase text-orange-600">Culture</span>
+                        <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition text-primary-text">
+                            NFTs and the Evolution of Digital Art Ownership
+                        </h4>
+                        <p class="text-xs text-secondary-text mt-2">
+                            May 2025 · By Kenji Sato
+                        </p>
+                    </a>
+
                 </div>
-            </a>
-            
-            <a href="magazine-details.html?article=space-economy" class="flex p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 group">
-                <img src="images/space.jpg" alt="A satellite orbiting the Earth" class="w-24 h-24 object-cover rounded-lg flex-shrink-0 mr-4" />
-                <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-600">Space Economy</span>
-                    <h4 class="text-xl font-bold text-gray-900 mt-1 group-hover:text-indigo-600 transition">
-                        The Billion-Dollar Race to Orbit: Commercial Space Travel
-                    </h4>
-                    <p class="text-sm text-gray-500 mt-1">
-                        Analyzing the disruptive players and technologies driving the new space race.
-                    </p>
+            </section>
+
+            <section class="lg:col-span-1">
+                <h2 class="text-3xl font-bold text-primary-text mb-6">📚 Special Focus</h2>
+                <div class="space-y-4">
+                    
+                    <a href="magazine-details.html?article=book-review" class="block p-4 bg-background rounded-xl shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition duration-300">
+                        <h4 class="font-bold text-primary-text">Book Review: 'The AI Paradox'</h4>
+                        <span class="text-xs text-secondary-text mt-1 block">Quick Read · Technology</span>
+                    </a>
+                 
+                    <a href="magazine-details.html?article=interview-smith" class="block p-4 bg-background rounded-xl shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition duration-300">
+                        <h4 class="font-bold text-primary-text">Interview with CEO Jane Smith</h4>
+                        <span class="text-xs text-secondary-text mt-1 block">Exclusive · Business</span>
+                    </a>
+                    <a href="magazine-details.html?article=photo-essay-asia" class="block p-4 bg-background rounded-xl shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition duration-300">
+                        <h4 class="font-bold text-primary-text">Photo Essay: Future of Asian Cities</h4>
+                        <span class="text-xs text-secondary-text mt-1 block">Visuals · Urban Design</span>
+                    </a>
                 </div>
-            </a>
-        </section>
-    </div>
+                <button class="w-full mt-6 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition">
+                    View All Archives
+                </button>
+            </section>
+        </div>
+    </main>
 
-    <hr class="my-16 border-gray-200">
-
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
-
-        <section class="lg:col-span-3">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">✨ Recent Releases</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-                
-                <a href="magazine-details.html?article=climate-shift" class="block bg-white rounded-xl shadow-md p-5 group hover:shadow-lg transition">
-                    <img src="images/climate.jpg" alt="A stark landscape" class="h-32 w-full object-cover rounded-lg mb-4" />
-                    <span class="text-xs font-semibold uppercase text-yellow-600">Environment</span>
-                    <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition">
-                        Climate Shift: Next 20 Years
-                    </h4>
-                    <p class="text-xs text-gray-500 mt-2">
-                        Aug 2025 · By The Editorial Team
-                    </p>
-                </a>
-
-                <a href="magazine-details.html?article=genetic-editing" class="block bg-white rounded-xl shadow-md p-5 group hover:shadow-lg transition">
-                    <img src="images/dna.jpg" alt="A stylized DNA strand" class="h-32 w-full object-cover rounded-lg mb-4" />
-                    <span class="text-xs font-semibold uppercase text-purple-600">BioTech</span>
-                    <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition">
-                        CRISPR & The Ethics of Genetic Editing
-                    </h4>
-                    <p class="text-xs text-gray-500 mt-2">
-                        Jul 2025 · By Dr. Chen
-                    </p>
-                </a>
-                
-                <a href="magazine-details.html?article=crypto-finance" class="block bg-white rounded-xl shadow-md p-5 group hover:shadow-lg transition">
-                    <img src="images/crypto.jpg" alt="A digital currency symbol" class="h-32 w-full object-cover rounded-lg mb-4" />
-                    <span class="text-xs font-semibold uppercase text-pink-600">Finance</span>
-                    <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition">
-                        The Decentralized Ledger: Crypto's Next Phase
-                    </h4>
-                    <p class="text-xs text-gray-500 mt-2">
-                        Jun 2025 · By Maria Lopez
-                    </p>
-                </a>
-                
-                <a href="magazine-details.html?article=digital-art" class="block bg-white rounded-xl shadow-md p-5 group hover:shadow-lg transition">
-                    <img src="images/art.jpg" alt="Abstract digital artwork" class="h-32 w-full object-cover rounded-lg mb-4" />
-                    <span class="text-xs font-semibold uppercase text-orange-600">Culture</span>
-                    <h4 class="text-lg font-bold mt-1 group-hover:text-indigo-600 transition">
-                        NFTs and the Evolution of Digital Art Ownership
-                    </h4>
-                    <p class="text-xs text-gray-500 mt-2">
-                        May 2025 · By Kenji Sato
-                    </p>
-                </a>
-
-            </div>
-        </section>
-
-        <section class="lg:col-span-1">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">📚 Special Focus</h2>
-            <div class="space-y-4">
-                
-                <a href="magazine-details.html?article=book-review" class="block p-4 bg-white rounded-xl shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition duration-300">
-                    <h4 class="font-bold text-gray-900">Book Review: 'The AI Paradox'</h4>
-                    <span class="text-xs text-gray-500 mt-1 block">Quick Read · Technology</span>
-                </a>
-             
-                <a href="magazine-details.html?article=interview-smith" class="block p-4 bg-white rounded-xl shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition duration-300">
-                    <h4 class="font-bold text-gray-900">Interview with CEO Jane Smith</h4>
-                    <span class="text-xs text-gray-500 mt-1 block">Exclusive · Business</span>
-                </a>         
-                <a href="magazine-details.html?article=photo-essay-asia" class="block p-4 bg-white rounded-xl shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition duration-300">
-                    <h4 class="font-bold text-gray-900">Photo Essay: Future of Asian Cities</h4>
-                    <span class="text-xs text-gray-500 mt-1 block">Visuals · Urban Design</span>
-                </a>
-                            </div>
-            <button class="w-full mt-6 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition">
-                View All Archives
-            </button>
-        </section>
-    </div>
-</main>
     <div id="search-overlay" class="fixed inset-0 z-[100] bg-background bg-opacity-95 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="container mx-auto px-4 py-16">
             <button id="search-close" 
@@ -335,14 +377,14 @@
             </button>
             <h2 class="text-3xl font-serif mb-8 text-primary-text">What are you looking for?</h2>
             <input type="text" placeholder="Start typing..." class="w-full text-4xl p-4 bg-transparent border-b-2 border-border focus:outline-none focus:border-accent text-primary-text" autofocus>
-            <div class="mt-8 text-secondary-text">Popular searches: **Technology**, **Style**, **Policy**</div>
+            <div class="mt-8 text-secondary-text">Popular searches: <strong>Technology</strong>, <strong>Style</strong>, <strong>Policy</strong></div>
         </div>
     </div>
 
-    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300 hidden">
         <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
 
-        <div id="drawer-content" class="absolute bottom-0 left-0 right-0 bg-background rounded-t-2xl shadow-2xl p-6 lg:hidden max-h-[80vh] overflow-y-auto transform translate-y-full transition-transform duration-300 ease-out">
+        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 lg:hidden max-h-[80vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             
             <div class="flex justify-between items-center pb-4 border-b border-border">
                 <h3 class="text-xl font-serif font-bold text-accent">Menu</h3>
@@ -361,12 +403,23 @@
                         <a href="home2.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Home 2</a>
                     </div>
                 </div>
-                <a href="#" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Categories</a>
-                <a href="#" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Trending</a>
-                <a href="#" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Authors</a>
-                <a href="#" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About</a>
-                <a href="#" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Contact</a>
-                <a href="#" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Dashboard</a>
+                <a href="Magazine.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Magazine</a>
+                <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Trending</a>
+                <a href="ABOUT.HTML" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About Us</a>
+                <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Contact</a>
+                <div>
+                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle">
+                        Dashboard
+                        <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="mobile-dashboard-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
+                        <a href="userdash.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">User Dashboard</a>
+                        <a href="dashboard.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Admin Dashboard</a>
+                    </div>
+                </div>
+
             </nav>
 
             <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
@@ -378,21 +431,14 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"></path></svg>
                     <span class="text-xs mt-1 text-secondary-text">Bookmarks</span>
                 </button>
-                <div class="flex flex-col items-center">
-                    <button id="mobile-theme-toggle" class="icon-btn text-primary-text hover:text-accent p-2 transition duration-200" title="Theme">
-                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                    </button>
-                    <span class="text-xs mt-1 text-secondary-text">Theme</span>
-                </div>
+               
             </div>
-
         </div>
     </div>
     
     <footer id="main-footer" class="pt-12 mt-12 transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-10 border-b border-gray-700">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-10 border-b border-border">
                 
                 <div class="col-span-2 md:col-span-2 lg:col-span-2">
                     <h3 class="text-3xl font-serif font-bold mb-4 text-gold">MagazinePro</h3>
@@ -407,7 +453,7 @@
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 7.6c-.6.3-1.3.5-2.1.6.8-.5 1.4-1.2 1.7-2-.7.4-1.5.7-2.4.9C18.1 6.5 17 6 15.8 6c-2 0-3.6 1.7-3.6 3.7 0 .3 0 .6.1.9C9.2 10.3 5.9 8.3 3.7 5.1c-.3.5-.5 1.1-.5 1.7 0 1.3.7 2.4 1.7 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.5 1.6 1.8 2.8 3.5 3.1-1.3 1-3.2 1.6-5.2 1.6-.3 0-.7 0-1-.1C4.7 18.8 7 19.5 9.6 19.5c6.3 0 10.3-5.3 10.3-9.9 0-.2 0-.3 0-.5.7-.5 1.3-1.1 1.8-1.9z"></path></svg>
                         </a>
                         <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Instagram" title="Instagram">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864-4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07zm0 2.137c-3.141 0-3.535.013-4.793.07s-2.07.382-2.805 1.05c-.735.668-1.077 1.666-1.15 2.805-.057 1.258-.07 1.652-.07 4.793s.013 3.535.07 4.793c.073 1.139.415 2.137 1.15 2.805.735.668 1.666 1.077 2.805 1.15 1.258.057 1.652.07 4.793.07s3.535-.013 4.793-.07c1.139-.073 2.137-.415 2.805-1.15.668-.735 1.077-1.666 1.15-2.805.057-1.258.07-1.652.07-4.793s-.013-3.535-.07-4.793c-.073-1.139-.415-2.137-1.15-2.805-.668-.735-1.666-1.077-2.805-1.15-1.258-.057-1.652-.07-4.793-.07zm0 3.702a4.116 4.116 0 100 8.232 4.116 4.116 0 000-8.232zm0 2.137a1.98 1.98 0 110 3.96 1.98 1.98 0 010-3.96z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864-4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07zm0 2.137c-3.141 0-3.535.013-4.793.07s-2.07.382-2.805 1.05c-.735.668-1.077 1.666-1.15 2.805-.057 1.258-.07 1.652-.07 4.793s.013 3.535.07 4.793c.073 1.139.415 2.137 1.15 2.805.735.668 1.666 1.077 2.805 1.15 1.258.057 1.652.07 4.793.07s3.535-.013 4.793-.07c1.139-.073 2.137-.415 2.805-1.15.668-.735 1.077-1.666 1.15-2.805-1.258-.057-1.652-.07-4.793-.07zm0 3.702a4.116 4.116 0 100 8.232 4.116 4.116 0 000-8.232zm0 2.137a1.98 1.98 0 110 3.96 1.98 1.98 0 010-3.96z"></path></svg>
                         </a>
                     </div>
                 </div>
@@ -426,11 +472,12 @@
                 <div class="col-span-1">
                     <h4 class="footer-heading font-semibold text-lg mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="footer-link">About Us</a></li>
-                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="#" class="footer-link">Terms of Use</a></li>
-                        <li><a href="#" class="footer-link">Advertise</a></li>
-                        <li><a href="#" class="footer-link">Contact</a></li>
+                         <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="Magazine.html" class="footer-link">Magazine</a></li>
+                        <li><a href="blog.html" class="footer-link">Trendings</a></li>
+                        <li><a href="ABOUT.HTML" class="footer-link">About Us</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                        <li><a href="dashboard.html" class="footer-link">Dashboard</a></li>
                     </ul>
                 </div>
 
@@ -440,7 +487,7 @@
                         Sign up for exclusive articles and updates.
                     </p>
                     <div class="flex flex-col space-y-3">
-                        <input type="email" placeholder="Your email address" aria-label="Email for Newsletter" class="p-3 text-sm rounded-lg bg-gray-800 border border-gray-700 focus:ring-1 focus:ring-gold focus:outline-none text-white placeholder-gray-400">
+                        <input type="email" placeholder="Your email address" aria-label="Email for Newsletter" class="p-3 text-sm rounded-lg bg-background border border-border focus:ring-1 focus:ring-gold focus:outline-none text-primary-text placeholder:text-secondary-text">
                         <button class="bg-gold text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-200 shadow-md">
                             Subscribe
                         </button>
@@ -448,7 +495,7 @@
                 </div>
             </div>
 
-            <div class="py-4 text-center text-gray-500 text-xs">
+            <div class="py-4 text-center text-secondary-text text-xs">
                 &copy; 2025 MagazinePro. All rights reserved. | <span class="hover:text-gold transition duration-200">Legal Disclaimer.</span>
             </div>
         </div>
@@ -457,7 +504,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.documentElement;
-
             // --- 1. Theme Toggle & Persistence ---
             const themeToggle = document.getElementById('theme-toggle');
             const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
@@ -516,7 +562,7 @@
             });
 
 
-            // --- 3. Mobile Menu Bottom Sheet Drawer ---
+            // --- 3. Mobile Menu Top Sheet Drawer (UPDATED LOGIC) ---
             const menuDrawer = document.getElementById('mobile-menu-drawer');
             const menuBackdrop = document.getElementById('drawer-backdrop');
             const menuContent = document.getElementById('drawer-content');
@@ -525,19 +571,33 @@
             const mobileHomesToggle = document.getElementById('mobile-homes-toggle');
             const mobileHomesMenu = document.getElementById('mobile-homes-menu');
             const homesIcon = document.getElementById('homes-icon');
+            const mobileDashboardToggle = document.getElementById('mobile-dashboard-toggle');
+            const mobileDashboardMenu = document.getElementById('mobile-dashboard-menu');
+            const dashboardIcon = document.getElementById('dashboard-icon');
 
             const openDrawer = () => {
+                // 1. Unhide the main container
+                menuDrawer.classList.remove('hidden'); 
                 menuDrawer.classList.remove('pointer-events-none');
-                menuContent.classList.remove('translate-y-full');
-                menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+                
+                // 2. Animate content and backdrop
+                setTimeout(() => { // Small delay ensures 'hidden' is removed before transition starts
+                    menuContent.classList.remove('translate-y-[-100%]'); 
+                    menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+                }, 10);
+                
                 document.body.style.overflow = 'hidden';
             };
 
             const closeDrawer = () => {
-                menuContent.classList.add('translate-y-full');
+                // 1. Animate content and backdrop
+                menuContent.classList.add('translate-y-[-100%]');
                 menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+                
+                // 2. Hide the main container after the transition finishes
                 menuContent.addEventListener('transitionend', () => {
                     menuDrawer.classList.add('pointer-events-none');
+                    menuDrawer.classList.add('hidden'); // Added to completely hide the drawer area
                     document.body.style.overflow = '';
                 }, { once: true });
             };
@@ -546,35 +606,39 @@
             if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeDrawer);
             if (menuBackdrop) menuBackdrop.addEventListener('click', closeDrawer);
 
-            // Mobile Dropdown Toggle
+            // Mobile Dropdown Toggle for Homes
             if (mobileHomesToggle) mobileHomesToggle.addEventListener('click', () => {
                 mobileHomesMenu.classList.toggle('hidden');
                 homesIcon.classList.toggle('rotate-180');
             });
 
-
-            // --- 4. RTL Language Switcher ---
-            const langSwitcher = document.getElementById('lang-switcher');
-
-            const handleLanguageChange = (lang) => {
-                if (lang === 'ar' || lang === 'he') {
-                    html.setAttribute('dir', 'rtl');
-                } else {
-                    html.setAttribute('dir', 'ltr');
-                }
-                localStorage.setItem('language', lang);
-            };
-
-            if (langSwitcher) {
-                langSwitcher.addEventListener('change', (e) => {
-                    handleLanguageChange(e.target.value);
+            // Mobile Dropdown Toggle for Dashboard
+            if (mobileDashboardToggle) {
+                mobileDashboardToggle.addEventListener('click', () => {
+                    mobileDashboardMenu.classList.toggle('hidden');
+                    dashboardIcon.classList.toggle('rotate-180');
                 });
-
-                // Initialize Language
-                const initialLang = localStorage.getItem('language') || 'en';
-                langSwitcher.value = initialLang;
-                handleLanguageChange(initialLang);
             }
+            // --- 4. Global Language Toggle (Globe Icon) ---
+const langButton = document.getElementById('lang-icon');
+
+const toggleLanguage = () => {
+    const currentLang = localStorage.getItem('language') || 'en';
+    const newLang = currentLang === 'en' ? 'ar' : 'en';
+
+    localStorage.setItem('language', newLang);
+
+    // Switch LTR / RTL
+    document.documentElement.setAttribute('dir', newLang === 'ar' ? 'rtl' : 'ltr');
+};
+
+if (langButton) langButton.addEventListener('click', toggleLanguage);
+
+// Initialize on load
+const savedLang = localStorage.getItem('language') || 'en';
+document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+
+
         });
     </script>
 </body>
