@@ -36,7 +36,7 @@ const articles = {
         date: 'August 1, 2025',
         author: 'Liam O\'Connell',
         readTime: '10 min read',
-        image: 'https://t4.ftcdn.net/jpg/12/03/19/17/360_F_1203191729_qzmwAliBBMf7N42bZk86MHszzIH4IRfQ.jpg',
+        image: 'https://ak.picdn.net/shutterstock/videos/1089414899/thumb/10.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">The commercialization of space has sparked a modern-day gold rush. Private companies are rapidly deploying satellites for global internet coverage, and the goal of space tourism is now firmly within reach.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">Beyond Earth Orbit</h3>
