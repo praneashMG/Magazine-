@@ -1,19 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/ABOUT.HTML",
-      "destination": "/about.html",
-      "permanent": true
-    },
-    {
-      "source": "/About.html",
-      "destination": "/about.html",
-      "permanent": true
-    },
-    {
-      "source": "/about.HTML",
-      "destination": "/about.html",
-      "permanent": true
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
