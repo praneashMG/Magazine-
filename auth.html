@@ -3,221 +3,777 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MagazinePro Authentication</title>
+    <title>MagazinePro | Premium Authentication</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        /* --- CSS Variables for Dynamic Colors --- */
-        :root, html[data-theme='light'] {
-            --color-background: #FFFFFF; /* White */
-            --color-primary-text: #1A1A1A; /* Dark Gray/Black */
-            --color-secondary-text: #4A4A4A;
-            --color-accent: #C19A6B; /* Gold */
-            --color-border: #E5E7EB; 
-            --color-hover: #F3F4F6;
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#FDF8F3',
+                            100: '#FAF2E6',
+                            200: '#F5E4CC',
+                            300: '#EED6B3',
+                            400: '#E6C899',
+                            500: '#D4B483', // Primary Gold
+                            600: '#C19A6B', // Main Accent
+                            700: '#A67C52',
+                            800: '#8B5E3A',
+                            900: '#6F4229',
+                        },
+                        dark: {
+                            50: '#F8F9FA',
+                            100: '#E9ECEF',
+                            200: '#DEE2E6',
+                            300: '#CED4DA',
+                            400: '#ADB5BD',
+                            500: '#6C757D',
+                            600: '#495057',
+                            700: '#343A40',
+                            800: '#212529',
+                            900: '#0F0F0F', // Dark Background
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-in': 'slideIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.4s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: '200px 0' }
+                        }
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #C19A6B 0%, #D4B483 100%)',
+                        'gold-light': 'linear-gradient(135deg, #F5E4CC 0%, #FAF2E6 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%)',
+                        'glass-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                        'glass-dark': 'linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%)',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                }
+            }
         }
-        html[data-theme='dark'] {
-            --color-background: #0F0F0F; /* Ultra Dark */
-            --color-primary-text: #EAEAEA;
-            --color-secondary-text: #BDBDBD;
-            --color-accent: #C19A6B; /* Gold */
-            --color-border: #2A2A2A; 
-            --color-hover: #1A1A1A;
-        }
+    </script>
 
-        /* Apply Variables and Base Font */
-        body {
-            background-color: var(--color-background);
-            color: var(--color-primary-text);
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+    <!-- Custom Styles -->
+    <style>
+        /* Theme Variables */
+        html[data-theme='light'] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --border-color: #E5E7EB;
+            --accent-color: #C19A6B;
         }
         
-        /* Utility Class Aliases */
-        .text-primary-text { color: var(--color-primary-text); }
-        .text-secondary-text { color: var(--color-secondary-text); }
-        .text-accent { color: var(--color-accent); }
-        .bg-background { background-color: var(--color-background); }
-        .bg-hover { background-color: var(--color-hover); }
-        .border-border { border-color: var(--color-border); }
-        .text-gold { color: var(--color-accent); }
-
-        /* Custom Styles */
-        #auth-container {
-            background-image: url('https://picsum.photos/1920/1080?random=auth');
-            background-size: cover;
-            background-position: center;
+        html[data-theme='dark'] {
+            --bg-primary: #0F0F0F;
+            --bg-secondary: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --border-color: #2A2A2A;
+            --accent-color: #D4AF37;
         }
-        #auth-overlay {
-            background-color: rgba(26, 26, 26, 0.9); /* Dark overlay */
+        
+        /* Custom Utilities */
+        .theme-transition {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
-        html[data-theme='dark'] #auth-overlay {
-            background-color: rgba(0, 0, 0, 0.9);
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
+        .glass-effect-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #D4B483 100%);
+            z-index: 10;
+        }
+        
+        .password-toggle-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .password-toggle-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+        
+        .social-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .checkbox-custom {
+            transition: all 0.2s ease;
+        }
+        
+        .checkbox-custom:checked {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .tab-indicator {
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .message {
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
-<body class="antialiased h-screen">
-
-    <!-- Auth Container: Full screen background image with overlay -->
-    <div id="auth-container" class="relative min-h-full flex items-center justify-center p-4">
-        
-        <!-- Overlay -->
-        <div id="auth-overlay" class="absolute inset-0 transition-opacity duration-500"></div>
-
-        <!-- Auth Card Wrapper (Centered) -->
-        <div class="relative z-10 w-full max-w-md">
+<body class="font-body theme-transition bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-dark-gradient text-gray-900 dark:text-white min-h-screen">
+        <!-- Theme Toggle Button -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="theme-toggle" class="">
             
-            <!-- Logo/Header -->
-            <div class="text-center mb-10">
-                <a href="#" class="text-4xl font-serif font-extrabold tracking-wide">
-                    <span class="text-gold">Magazine</span><span class="text-white">Pro</span>
-                </a>
-                <p id="page-subtitle" class="text-white/70 mt-2 font-light"></p>
+        </button>
+    </div>
+        <!-- Main Container -->
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Column - Hero Content -->
+            <div class="lg:w-1/2 w-full max-w-2xl animate-fade-in">
+                <div class="bg-gradient-to-br from-gold-50 to-white dark:from-dark-800 dark:to-dark-900 rounded-3xl p-8 lg:p-12 shadow-2xl border border-gold-200 dark:border-dark-700">
+                    
+                    <!-- Logo -->
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="w-16 h-16 rounded-2xl bg-gold-gradient flex items-center justify-center shadow-lg">
+                            <i class="fas fa-newspaper text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="font-display text-4xl font-bold">
+                                <span class="text-gold-600 dark:text-gold-500">Magazine</span>
+                                <span class="text-gray-900 dark:text-white">Pro</span>
+                            </h1>
+                            <p class="text-gray-600 dark:text-gray-400 text-lg">Premium Content Platform</p>
+                        </div>
+                    </div>
+
+                    <!-- Hero Content -->
+                    <div class="space-y-8">
+                        <h2 class="font-display text-5xl lg:text-6xl font-bold leading-tight">
+                            Welcome to <span class="text-gold-600 dark:text-gold-500">Exclusive</span> Content
+                        </h2>
+                        
+                        <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Join thousands of readers who trust MagazinePro for premium articles, expert insights, and cutting-edge content.
+                        </p>
+                        
+                        <!-- Features Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-gray-100 dark:border-dark-700 hover:border-gold-300 dark:hover:border-gold-600 transition-colors">
+                                <div class="w-12 h-12 rounded-xl bg-gold-100 dark:bg-gold-900/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-star text-gold-600 dark:text-gold-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Premium Articles</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Access exclusive content from top publications</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-gray-100 dark:border-dark-700 hover:border-gold-300 dark:hover:border-gold-600 transition-colors">
+                                <div class="w-12 h-12 rounded-xl bg-gold-100 dark:bg-gold-900/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user-shield text-gold-600 dark:text-gold-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Secure Access</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Enterprise-grade security for your data</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-gray-100 dark:border-dark-700 hover:border-gold-300 dark:hover:border-gold-600 transition-colors">
+                                <div class="w-12 h-12 rounded-xl bg-gold-100 dark:bg-gold-900/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bolt text-gold-600 dark:text-gold-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Fast Loading</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Optimized for the best reading experience</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-gray-100 dark:border-dark-700 hover:border-gold-300 dark:hover:border-gold-600 transition-colors">
+                                <div class="w-12 h-12 rounded-xl bg-gold-100 dark:bg-gold-900/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-mobile-alt text-gold-600 dark:text-gold-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Multi-Device</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Read anywhere on any device</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial -->
+                        <div class="mt-12 p-6 rounded-2xl glass-effect-dark border border-gray-200 dark:border-dark-700">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gold-gradient"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Alexandra Chen</h4>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Editor-in-Chief</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 italic">
+                                "MagazinePro has revolutionized how our team accesses and shares premium content. The authentication experience is seamless and secure."
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Auth Card -->
-            <div class="bg-background rounded-xl p-8 md:p-10 shadow-2xl border border-accent/30 transition duration-500 transform hover:shadow-accent/50">
-                
-                <!-- Tab/Form Switcher -->
-                <div class="flex border-b border-border mb-8">
-                    <button id="login-tab" class="auth-tab w-1/2 pb-3 font-semibold text-primary-text transition duration-300 border-b-2 border-transparent hover:border-accent active-tab">
-                        Sign In
-                    </button>
-                    <button id="register-tab" class="auth-tab w-1/2 pb-3 font-semibold text-primary-text transition duration-300 border-b-2 border-transparent hover:border-accent">
-                        Register
-                    </button>
-                </div>
-                
-                <!-- Login Form -->
-                <form id="login-form" class="auth-form space-y-6">
+            <!-- Right Column - Authentication Forms -->
+            <div class="lg:w-1/2 w-full max-w-lg animate-slide-in">
+                <div class="relative form-card bg-white dark:bg-dark-800 rounded-3xl shadow-2xl overflow-hidden border border-gray-100 dark:border-dark-700">
                     
-                    <h2 class="text-2xl font-serif font-bold text-primary-text mb-4">Welcome Back</h2>
-
-                    <div>
-                        <label for="login-email" class="block text-sm font-medium text-primary-text mb-1">Email Address</label>
-                        <input type="email" id="login-email" required class="w-full p-3 border border-border rounded-lg bg-background focus:ring-accent focus:border-accent text-primary-text transition duration-200">
-                    </div>
-                    <div>
-                        <label for="login-password" class="block text-sm font-medium text-primary-text mb-1">Password</label>
-                        <input type="password" id="login-password" required class="w-full p-3 border border-border rounded-lg bg-background focus:ring-accent focus:border-accent text-primary-text transition duration-200">
-                    </div>
-
-                    <div class="flex items-center justify-between text-sm">
-                        <label class="flex items-center text-secondary-text">
-                            <input type="checkbox" class="mr-2 rounded text-accent focus:ring-accent border-border bg-hover"> Remember Me
-                        </label>
-                        <a href="#" class="text-secondary-text hover:text-accent transition duration-200">Forgot Password?</a>
-                    </div>
-
-                    <button type="submit" class="w-full bg-accent text-primary-text font-extrabold py-3 rounded-lg hover:opacity-90 transition duration-300 shadow-lg uppercase tracking-wider">
-                        Sign In Securely
-                    </button>
-                </form>
-                
-                <!-- Register Form (Hidden by default) -->
-                <form id="register-form" class="auth-form space-y-6 hidden">
+                    <!-- Background Decoration -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold-50 dark:bg-gold-900/10 rounded-full -translate-y-32 translate-x-32"></div>
+                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-gold-50 dark:bg-gold-900/10 rounded-full translate-y-24 -translate-x-24"></div>
                     
-                    <h2 class="text-2xl font-serif font-bold text-primary-text mb-4">Create Account</h2>
-
-                    <div>
-                        <label for="register-name" class="block text-sm font-medium text-primary-text mb-1">Full Name</label>
-                        <input type="text" id="register-name" required class="w-full p-3 border border-border rounded-lg bg-background focus:ring-accent focus:border-accent text-primary-text transition duration-200">
-                    </div>
-                    <div>
-                        <label for="register-email" class="block text-sm font-medium text-primary-text mb-1">Email Address</label>
-                        <input type="email" id="register-email" required class="w-full p-3 border border-border rounded-lg bg-background focus:ring-accent focus:border-accent text-primary-text transition duration-200">
-                    </div>
-                    <div>
-                        <label for="register-password" class="block text-sm font-medium text-primary-text mb-1">Password</label>
-                        <input type="password" id="register-password" required class="w-full p-3 border border-border rounded-lg bg-background focus:ring-accent focus:border-accent text-primary-text transition duration-200">
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-accent text-primary-text font-extrabold py-3 rounded-lg hover:opacity-90 transition duration-300 shadow-lg uppercase tracking-wider">
-                        Register Account
-                    </button>
-                </form>
-
-                <!-- Social Login Options (Appears below both forms) -->
-                <div class="mt-6 text-center">
-                    <p class="text-xs uppercase tracking-wider text-secondary-text mb-4">Or sign in with</p>
-                    <div class="flex justify-center space-x-4">
-                        <button class="social-btn p-3 bg-primary-text/10 rounded-full hover:bg-primary-text/20 transition duration-200 text-primary-text" title="Sign in with Google">
-                            <i class="fab fa-google"></i>
-                        </button>
-                        <button class="social-btn p-3 bg-primary-text/10 rounded-full hover:bg-primary-text/20 transition duration-200 text-primary-text" title="Sign in with Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-                        <button class="social-btn p-3 bg-primary-text/10 rounded-full hover:bg-primary-text/20 transition duration-200 text-primary-text" title="Sign in with Twitter/X">
-                            <i class="fab fa-twitter"></i>
-                        </button>
+                    <div class="relative z-10 p-8 lg:p-10">
+                        
+                        <!-- Tab Navigation -->
+                        <div class="flex gap-1 p-1.5 rounded-2xl bg-gray-100 dark:bg-dark-700 mb-8 relative">
+                            <div id="tab-indicator" class="tab-indicator absolute top-1.5 left-1.5 w-1/2 h-[calc(100%-0.75rem)] bg-white dark:bg-dark-800 rounded-xl shadow-lg transition-transform"></div>
+                            
+                            <button id="login-tab" class="tab-btn flex-1 py-4 px-6 rounded-xl font-semibold text-gray-700 dark:text-gray-300 transition-colors relative z-10 flex items-center justify-center gap-3" data-form="login">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Sign In</span>
+                            </button>
+                            
+                            <button id="register-tab" class="tab-btn flex-1 py-4 px-6 rounded-xl font-semibold text-gray-700 dark:text-gray-300 transition-colors relative z-10 flex items-center justify-center gap-3" data-form="register">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Register</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Messages Container -->
+                        <div id="messages-container" class="mb-6 space-y-3"></div>
+                        
+                        <!-- Login Form -->
+                        <form id="login-form" class="auth-form space-y-6">
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+                                <div class="relative">
+                                    <input type="email" required 
+                                           class="w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-dark-700 border-2 border-gray-200 dark:border-dark-600 rounded-xl focus:outline-none focus:border-gold-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                                           placeholder="you@example.com">
+                                    <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="login-password" required 
+                                           class="w-full pl-12 pr-12 py-3.5 bg-gray-50 dark:bg-dark-700 border-2 border-gray-200 dark:border-dark-600 rounded-xl focus:outline-none focus:border-gold-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                                           placeholder="••••••••">
+                                    <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                                    <button type="button" class="password-toggle-btn absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"
+                                            onclick="togglePassword('login-password', this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <label class="flex items-center gap-2 text-gray-600 dark:text-gray-400 cursor-pointer">
+                                        <input type="checkbox" class="checkbox-custom w-4 h-4 rounded border-gray-300 dark:border-dark-600 text-gold-600 dark:text-gold-500 focus:ring-gold-500 dark:focus:ring-gold-500">
+                                        <span class="text-sm">Remember me</span>
+                                    </label>
+                                    <a href="#" class="text-sm text-gold-600 dark:text-gold-500 hover:text-gold-700 dark:hover:text-gold-400 font-medium transition-colors">
+                                        Forgot password?
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gold-gradient hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Sign In to Account</span>
+                            </button>
+                            
+                            <div class="relative my-8">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-200 dark:border-dark-700"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-4 bg-white dark:bg-dark-800 text-gray-500 dark:text-gray-400">Or continue with</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <button type="button" class="social-btn bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-xl py-3.5 hover:border-gold-300 dark:hover:border-gold-600">
+                                    <i class="fab fa-google text-red-500 text-lg"></i>
+                                </button>
+                                <button type="button" class="social-btn bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-xl py-3.5 hover:border-gold-300 dark:hover:border-gold-600">
+                                    <i class="fab fa-github text-gray-800 dark:text-gray-200 text-lg"></i>
+                                </button>
+                                <button type="button" class="social-btn bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-xl py-3.5 hover:border-gold-300 dark:hover:border-gold-600">
+                                    <i class="fab fa-apple text-gray-800 dark:text-gray-200 text-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="text-center text-gray-600 dark:text-gray-400 text-sm mt-8">
+                                Don't have an account? 
+                                <a href="#" class="text-gold-600 dark:text-gold-500 hover:text-gold-700 dark:hover:text-gold-400 font-medium transition-colors switch-form" data-form="register">
+                                    Create one now
+                                </a>
+                            </p>
+                        </form>
+                        
+                        <!-- Register Form -->
+                        <form id="register-form" class="auth-form space-y-6 hidden">
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
+                                <div class="relative">
+                                    <input type="text" required 
+                                           class="w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-dark-700 border-2 border-gray-200 dark:border-dark-600 rounded-xl focus:outline-none focus:border-gold-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                                           placeholder="John Doe">
+                                    <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+                                <div class="relative">
+                                    <input type="email" required 
+                                           class="w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-dark-700 border-2 border-gray-200 dark:border-dark-600 rounded-xl focus:outline-none focus:border-gold-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                                           placeholder="you@example.com">
+                                    <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="register-password" required 
+                                           class="w-full pl-12 pr-12 py-3.5 bg-gray-50 dark:bg-dark-700 border-2 border-gray-200 dark:border-dark-600 rounded-xl focus:outline-none focus:border-gold-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                                           placeholder="••••••••">
+                                    <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                                    <button type="button" class="password-toggle-btn absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"
+                                            onclick="togglePassword('register-password', this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                    Must be at least 8 characters with letters and numbers
+                                </p>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm Password</label>
+                                <div class="relative">
+                                    <input type="password" id="confirm-password" required 
+                                           class="w-full pl-12 pr-12 py-3.5 bg-gray-50 dark:bg-dark-700 border-2 border-gray-200 dark:border-dark-600 rounded-xl focus:outline-none focus:border-gold-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                                           placeholder="••••••••">
+                                    <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                                    <button type="button" class="password-toggle-btn absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"
+                                            onclick="togglePassword('confirm-password', this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="terms" required 
+                                       class="checkbox-custom w-5 h-5 mt-0.5 rounded border-gray-300 dark:border-dark-600 text-gold-600 dark:text-gold-500 focus:ring-gold-500 dark:focus:ring-gold-500">
+                                <label for="terms" class="text-sm text-gray-600 dark:text-gray-400">
+                                    I agree to the 
+                                    <a href="#" class="text-gold-600 dark:text-gold-500 hover:text-gold-700 dark:hover:text-gold-400 font-medium">Terms of Service</a> 
+                                    and 
+                                    <a href="#" class="text-gold-600 dark:text-gold-500 hover:text-gold-700 dark:hover:text-gold-400 font-medium">Privacy Policy</a>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gold-gradient hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Create Account</span>
+                            </button>
+                            
+                            <div class="relative my-8">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-200 dark:border-dark-700"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-4 bg-white dark:bg-dark-800 text-gray-500 dark:text-gray-400">Or sign up with</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <button type="button" class="social-btn bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-xl py-3.5 hover:border-gold-300 dark:hover:border-gold-600">
+                                    <i class="fab fa-google text-red-500 text-lg"></i>
+                                </button>
+                                <button type="button" class="social-btn bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-xl py-3.5 hover:border-gold-300 dark:hover:border-gold-600">
+                                    <i class="fab fa-github text-gray-800 dark:text-gray-200 text-lg"></i>
+                                </button>
+                                <button type="button" class="social-btn bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-xl py-3.5 hover:border-gold-300 dark:hover:border-gold-600">
+                                    <i class="fab fa-apple text-gray-800 dark:text-gray-200 text-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="text-center text-gray-600 dark:text-gray-400 text-sm mt-8">
+                                Already have an account? 
+                                <a href="#" class="text-gold-600 dark:text-gold-500 hover:text-gold-700 dark:hover:text-gold-400 font-medium transition-colors switch-form" data-form="login">
+                                    Sign in here
+                                </a>
+                            </p>
+                        </form>
+                        
+                        <!-- Footer -->
+                        <div class="mt-10 pt-6 border-t border-gray-200 dark:border-dark-700">
+                            <p class="text-center text-xs text-gray-500 dark:text-gray-400">
+                                By continuing, you agree to our Terms of Service and Privacy Policy
+                            </p>
+                            <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-2">
+                                Need help? <a href="#" class="text-gold-600 dark:text-gold-500 hover:text-gold-700 dark:hover:text-gold-400 font-medium">Contact Support</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Legal/Help Text -->
-            <p class="text-center text-white/50 text-xs mt-6">
-                By continuing, you agree to the MagazinePro <a href="#" class="hover:text-accent">Terms of Service</a>.
-            </p>
-
         </div>
     </div>
 
-    <!-- JavaScript to handle form switching -->
+    <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginTab = document.getElementById('login-tab');
-            const registerTab = document.getElementById('register-tab');
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const subtitle = document.getElementById('page-subtitle');
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            
+            // Update icon
+            if (isDark) {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeIcon.classList.add('text-gold-600');
+                themeIcon.classList.remove('text-gold-500');
+            } else {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeIcon.classList.add('text-gold-500');
+                themeIcon.classList.remove('text-gold-600');
+            }
+            
+            // Add animation
+            themeToggle.classList.add('rotate-180', 'scale-110');
+            setTimeout(() => {
+                themeToggle.classList.remove('rotate-180', 'scale-110');
+            }, 300);
+        });
 
-            const setActiveForm = (formName) => {
-                // Update tabs
-                loginTab.classList.toggle('active-tab', formName === 'login');
-                registerTab.classList.toggle('active-tab', formName === 'register');
+        // Form Switching
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const tabIndicator = document.getElementById('tab-indicator');
+        const messagesContainer = document.getElementById('messages-container');
+        const switchFormLinks = document.querySelectorAll('.switch-form');
+
+        function switchForm(formName) {
+            const isLogin = formName === 'login';
+            
+            // Update tabs
+            loginTab.classList.toggle('text-gray-700', isLogin);
+            loginTab.classList.toggle('dark:text-gray-300', isLogin);
+            loginTab.classList.toggle('text-gray-400', !isLogin);
+            loginTab.classList.toggle('dark:text-gray-500', !isLogin);
+            
+            registerTab.classList.toggle('text-gray-700', !isLogin);
+            registerTab.classList.toggle('dark:text-gray-300', !isLogin);
+            registerTab.classList.toggle('text-gray-400', isLogin);
+            registerTab.classList.toggle('dark:text-gray-500', isLogin);
+            
+            // Update tab indicator
+            tabIndicator.style.transform = isLogin ? 'translateX(0)' : 'translateX(100%)';
+            
+            // Update forms
+            if (isLogin) {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                loginForm.classList.add('animate-fade-in');
+                setTimeout(() => loginForm.classList.remove('animate-fade-in'), 600);
+            } else {
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+                registerForm.classList.add('animate-fade-in');
+                setTimeout(() => registerForm.classList.remove('animate-fade-in'), 600);
+            }
+            
+            // Clear messages
+            messagesContainer.innerHTML = '';
+            
+            // Focus first input
+            setTimeout(() => {
+                const activeForm = isLogin ? loginForm : registerForm;
+                const firstInput = activeForm.querySelector('input');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
+
+        // Event Listeners
+        loginTab.addEventListener('click', () => switchForm('login'));
+        registerTab.addEventListener('click', () => switchForm('register'));
+        
+        switchFormLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchForm(link.dataset.form);
+            });
+        });
+
+        // Password Toggle Function
+        function togglePassword(passwordFieldId, button) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const icon = button.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+                button.classList.add('text-gold-600', 'dark:text-gold-500');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+                button.classList.remove('text-gold-600', 'dark:text-gold-500');
+            }
+        }
+
+        // Show Message Function
+        function showMessage(type, text) {
+            const messageDiv = document.createElement('div');
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const bgColor = type === 'success' ? 'bg-green-50 dark:bg-green-900/20' : 'bg-red-50 dark:bg-red-900/20';
+            const borderColor = type === 'success' ? 'border-green-200 dark:border-green-800' : 'border-red-200 dark:border-red-800';
+            const textColor = type === 'success' ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300';
+            
+            messageDiv.className = `message p-4 rounded-xl border ${bgColor} ${borderColor} ${textColor} flex items-center gap-3`;
+            messageDiv.innerHTML = `
+                <i class="fas ${icon} text-lg"></i>
+                <span class="font-medium">${text}</span>
+            `;
+            
+            messagesContainer.prepend(messageDiv);
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateY(-10px)';
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 5000);
+        }
+
+        // Form Validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
+        }
+
+        // Login Form Submission
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = loginForm.querySelector('input[type="email"]').value;
+            const password = loginForm.querySelector('input[type="password"]').value;
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            
+            // Validation
+            if (!validateEmail(email)) {
+                showMessage('error', 'Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage('error', 'Password must be at least 6 characters');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Signing in...</span>
+            `;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Sign In to Account</span>
+            `;
+            
+            // Show success message
+            showMessage('success', 'Successfully signed in! Redirecting to dashboard...');
+            
+            // Simulate redirect
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 2000);
+        });
+
+        // Register Form Submission
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = registerForm.querySelector('input[type="text"]').value;
+            const email = registerForm.querySelectorAll('input[type="email"]')[0].value;
+            const password = registerForm.querySelectorAll('input[type="password"]')[0].value;
+            const confirmPassword = registerForm.querySelectorAll('input[type="password"]')[1].value;
+            const terms = registerForm.querySelector('#terms');
+            const submitBtn = registerForm.querySelector('button[type="submit"]');
+            
+            // Validation
+            if (name.length < 2) {
+                showMessage('error', 'Please enter your full name');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showMessage('error', 'Please enter a valid email address');
+                return;
+            }
+            
+            if (!validatePassword(password)) {
+                showMessage('error', 'Password must be at least 8 characters with letters and numbers');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showMessage('error', 'Passwords do not match');
+                return;
+            }
+            
+            if (!terms.checked) {
+                showMessage('error', 'Please agree to the Terms of Service and Privacy Policy');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Creating account...</span>
+            `;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+                <i class="fas fa-user-plus"></i>
+                <span>Create Account</span>
+            `;
+            
+            // Show success message
+            showMessage('success', 'Account created successfully! Welcome to MagazinePro.');
+            
+            // Switch to login form after 3 seconds
+            setTimeout(() => {
+                switchForm('login');
+            }, 3000);
+        });
+
+        // Social Login Buttons
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Add animation
+                btn.classList.add('scale-95');
+                setTimeout(() => btn.classList.remove('scale-95'), 150);
                 
-                if (formName === 'login') {
-                    loginForm.classList.remove('hidden');
-                    registerForm.classList.add('hidden');
-                    subtitle.textContent = "Access your exclusive content and profile.";
-                    loginTab.style.borderColor = 'var(--color-accent)';
-                    registerTab.style.borderColor = 'transparent';
-                } else {
-                    loginForm.classList.add('hidden');
-                    registerForm.classList.remove('hidden');
-                    subtitle.textContent = "Join our community for premium insights.";
-                    registerTab.style.borderColor = 'var(--color-accent)';
-                    loginTab.style.borderColor = 'transparent';
-                }
-            };
+                showMessage('success', 'Social login would be implemented here.');
+            });
+        });
 
-            // Initial state: ensure the active tab styles are set
-            setActiveForm('login');
-
-            // Event listeners for tabs
-            loginTab.addEventListener('click', () => setActiveForm('login'));
-            registerTab.addEventListener('click', () => setActiveForm('register'));
-
-            // Prevent actual submission for demo purposes
-            document.querySelectorAll('.auth-form').forEach(form => {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    // In a real application, you would handle Firebase/API authentication here
-                    const action = form.id === 'login-form' ? 'Signing in...' : 'Registering...';
-                    console.log(`${action} Form submitted.`);
-                    alert(`Demo: ${action}`);
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Focus first input
+            setTimeout(() => {
+                const firstInput = loginForm.querySelector('input');
+                if (firstInput) firstInput.focus();
+            }, 500);
+            
+            // Add hover effects to social buttons
+            document.querySelectorAll('.social-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transform = 'translateY(-2px)';
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = '';
                 });
             });
-
-            // Ensure H-screen works properly on mobile (fixes address bar issue)
-            const setVh = () => {
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-            };
-            window.addEventListener('resize', setVh);
-            setVh();
         });
     </script>
 </body>
