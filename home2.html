@@ -16,8 +16,7 @@
             --color-hover: #F3F4F6;
             --color-footer-bg: #1A1A1A; /* Dark Footer BG in Light Mode */
             --color-footer-text: #EAEAEA; 
-            /* Added for inline style fix */
-            --color-hero-text: var(--color-accent);
+            --color-hero-text: #C19A6B; /* Fixed: Direct value instead of var() reference */
         }
         html[data-theme='dark'] {
             --color-background: #0F0F0F; /* Ultra Dark */
@@ -28,8 +27,7 @@
             --color-hover: #1A1A1A;
             --color-footer-bg: #000000; /* Even darker footer in Dark Mode */
             --color-footer-text: #EAEAEA;
-            /* Added for inline style fix */
-            --color-hero-text: var(--color-accent);
+            --color-hero-text: #C19A6B; /* Fixed: Direct value instead of var() reference */
         }
 
         /* Apply Variables and Base Font */
@@ -64,82 +62,82 @@
         
         /* Specific color fixes found in original prompt */
         .text-white { color: var(--color-footer-text); } 
+        
         /* IMPROVED DROPDOWN WITH BUFFER ZONE */
-.dropdown-container {
-    position: relative;
-}
+        .dropdown-container {
+            position: relative;
+        }
 
-/* Create invisible hover zone around dropdown */
-.dropdown-container::before {
-    content: '';
-    position: absolute;
-    top: -20px; /* Extend 20px above */
-    left: -20px; /* Extend 20px left */
-    right: -20px; /* Extend 20px right */
-    bottom: -20px; /* Extend 20px below */
-    z-index: 10;
-    background: transparent;
-    pointer-events: auto;
-}
+        /* Create invisible hover zone around dropdown */
+        .dropdown-container::before {
+            content: '';
+            position: absolute;
+            top: -20px; /* Extend 20px above */
+            left: -20px; /* Extend 20px left */
+            right: -20px; /* Extend 20px right */
+            bottom: -20px; /* Extend 20px below */
+            z-index: 10;
+            background: transparent;
+            pointer-events: auto;
+        }
 
-/* Dropdown Menu */
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    z-index: 50;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
 
-/* Show dropdown when container is hovered */
-.dropdown-container:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-}
+        /* Show dropdown when container is hovered */
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            display: block;
+        }
 
-/* Keep dropdown visible when hovering over it */
-.dropdown-menu:hover {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-}
+        /* Keep dropdown visible when hovering over it */
+        .dropdown-menu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            display: block;
+        }
 
-/* Dropdown items */
-.dropdown-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: var(--color-primary-text);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    border-bottom: 1px solid var(--color-border);
-    pointer-events: auto;
-}
+        /* Dropdown items */
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+            pointer-events: auto;
+        }
 
-.dropdown-menu a:last-child {
-    border-bottom: none;
-}
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
 
-.dropdown-menu a:hover {
-    background-color: var(--color-hover);
-    color: var(--color-accent);
-    padding-left: 1.25rem;
-}
-
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent);
+            padding-left: 1.25rem;
+        }
 
         /* Footer Specific Overrides (Included for variable consistency) */
         #main-footer {
@@ -178,18 +176,24 @@
         .nav-link:hover::after, .nav-link.active::after {
             transform: scaleX(1);
         }
+        
         /* Dropdown Flicker Fix: Applies delay to all absolute elements inside a group */
         .group > div.absolute {
             transition-delay: 200ms;
         }
-        /* Custom utility class for the top-positioned drawer */
-        .translate-y-[-100%] {
-            transform: translateY(-100%);
-        }
-
+        
         /* Custom Styles for Main Layout Sections (Simplified) */
         .section-heading {
             font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+        
+        /* Added classes to replace inline styles */
+        .bg-editorial-cta {
+            background-image: url('https://i.pinimg.com/originals/0f/c9/f5/0fc9f59fbb9de7ff2e995239c9d41156.jpg');
+        }
+        
+        .text-hero {
+            color: var(--color-hero-text);
         }
     </style>
 </head>
@@ -504,14 +508,11 @@
         </section>
         
         <section class="relative bg-primary-text rounded-xl p-10 text-center shadow-2xl overflow-hidden transition duration-300 hover:shadow-accent/50">
-            <div class="absolute inset-0 bg-cover bg-center" 
-                style="background-image: url('https://i.pinimg.com/originals/0f/c9/f5/0fc9f59fbb9de7ff2e995239c9d41156.jpg');" 
-                aria-hidden="true">
-            </div>
+            <div class="absolute inset-0 bg-cover bg-center bg-editorial-cta" aria-hidden="true"></div>
             <div class="absolute inset-0 bg-primary-text opacity-80 group-hover:opacity-70 transition duration-300" aria-hidden="true"></div>
             
             <div class="relative z-10">
-                <h3 class="text-4xl font-serif font-bold mb-4" style="color: var(--color-hero-text);">
+                <h3 class="text-4xl font-serif font-bold mb-4 text-hero">
                     Stop Searching. Start Reading.
                 </h3>
                 <p class="text-secondary-text text-xl mb-8">
@@ -873,26 +874,26 @@
                     }
                 }
             });
-                      // --- 4. Global Language Toggle (Globe Icon) ---
-const langButton = document.getElementById('lang-icon');
+            
+            // --- 6. Global Language Toggle (Globe Icon) ---
+            const langButton = document.getElementById('lang-icon');
 
-const toggleLanguage = () => {
-    const currentLang = localStorage.getItem('language') || 'en';
-    const newLang = currentLang === 'en' ? 'ar' : 'en';
+            const toggleLanguage = () => {
+                const currentLang = localStorage.getItem('language') || 'en';
+                const newLang = currentLang === 'en' ? 'ar' : 'en';
 
-    localStorage.setItem('language', newLang);
+                localStorage.setItem('language', newLang);
 
-    document.documentElement.setAttribute(
-        'dir',
-        newLang === 'ar' ? 'rtl' : 'ltr'
-    );
-};
+                document.documentElement.setAttribute(
+                    'dir',
+                    newLang === 'ar' ? 'rtl' : 'ltr'
+                );
+            };
 
-if (langButton) langButton.addEventListener('click', toggleLanguage);
+            if (langButton) langButton.addEventListener('click', toggleLanguage);
 
-const savedLang = localStorage.getItem('language') || 'en';
-document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
-
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
             
         });
         

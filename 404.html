@@ -319,12 +319,18 @@
             <div class="flex items-center lg:hidden space-x-4 rtl:space-x-reverse rtl:ml-4">
 
     <!-- Mobile Search -->
-    <button id="mobile-search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-    </button>
+   <button 
+    id="mobile-search-open" 
+    class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+    aria-label="Open Search"
+    title="Open Search"
+>
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+</button>
+
 
     <!-- 🌐 Global Language Toggle -->
     <!-- <button id="lang-icon" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
@@ -333,26 +339,38 @@
                   d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
         </svg>
     </button> -->
-    <button id="mobile-theme-toggle" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-        <!-- Sun Icon (Light Mode) -->
-        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
+    <button 
+    id="mobile-theme-toggle" 
+    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+    aria-label="Toggle Theme"
+    title="Toggle Theme"
+>
+    <!-- Sun Icon (Light Mode) -->
+    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
 
-        <!-- Moon Icon (Dark Mode) -->
-        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-    </button>
+    <!-- Moon Icon (Dark Mode) -->
+    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+</button>
+
     <!-- Mobile Menu -->
-    <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
+    <button 
+    id="mobile-menu-open" 
+    class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+    aria-label="Open Menu"
+    title="Open Menu"
+>
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+</button>
+
 </div>
 
         </nav>

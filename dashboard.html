@@ -153,6 +153,16 @@
             animation: shimmer 2s infinite;
         }
         
+        /* Progress fill widths */
+        .progress-width-78 { width: 78%; }
+        .progress-width-92 { width: 92%; }
+        .progress-width-40 { width: 40%; }
+        .progress-width-45 { width: 45%; }
+        .progress-width-85 { width: 85%; }
+        .progress-width-95 { width: 95%; }
+        .progress-width-75 { width: 75%; }
+        .progress-width-95-2 { width: 95.2%; }
+        
         @keyframes shimmer {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
@@ -192,7 +202,8 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(193, 154, 107, 0.3);
         }
-          .nav-link {
+        
+        .nav-link {
             position: relative;
             transition: color 0.3s;
             padding-top: 0.25rem;
@@ -212,81 +223,83 @@
         .nav-link:hover::after, .nav-link.active::after {
             transform: scaleX(1);
         }
+        
         /* IMPROVED DROPDOWN WITH BUFFER ZONE */
-.dropdown-container {
-    position: relative;
-}
+        .dropdown-container {
+            position: relative;
+        }
 
-/* Create invisible hover zone around dropdown */
-.dropdown-container::before {
-    content: '';
-    position: absolute;
-    top: -20px; /* Extend 20px above */
-    left: -20px; /* Extend 20px left */
-    right: -20px; /* Extend 20px right */
-    bottom: -20px; /* Extend 20px below */
-    z-index: 10;
-    background: transparent;
-    pointer-events: auto;
-}
+        /* Create invisible hover zone around dropdown */
+        .dropdown-container::before {
+            content: '';
+            position: absolute;
+            top: -20px; /* Extend 20px above */
+            left: -20px; /* Extend 20px left */
+            right: -20px; /* Extend 20px right */
+            bottom: -20px; /* Extend 20px below */
+            z-index: 10;
+            background: transparent;
+            pointer-events: auto;
+        }
 
-/* Dropdown Menu */
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    z-index: 50;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
 
-/* Show dropdown when container is hovered */
-.dropdown-container:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-}
+        /* Show dropdown when container is hovered */
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            display: block;
+        }
 
-/* Keep dropdown visible when hovering over it */
-.dropdown-menu:hover {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-}
+        /* Keep dropdown visible when hovering over it */
+        .dropdown-menu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            display: block;
+        }
 
-/* Dropdown items */
-.dropdown-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: var(--color-primary-text);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    border-bottom: 1px solid var(--color-border);
-    pointer-events: auto;
-}
+        /* Dropdown items */
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+            pointer-events: auto;
+        }
 
-.dropdown-menu a:last-child {
-    border-bottom: none;
-}
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
 
-.dropdown-menu a:hover {
-    background-color: var(--color-hover);
-    color: var(--color-accent);
-    padding-left: 1.25rem;
-}
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent);
+            padding-left: 1.25rem;
+        }
+        
         /* Premium Status Indicator */
         .status-indicator {
             display: inline-flex;
@@ -316,16 +329,16 @@
             color: #F56565;
             border: 1px solid rgba(245, 101, 101, 0.3);
         }
-        .footer-link {
-     color: var(--color-secondary-text);
-            transition: color 0.2s;
-}
-
-.footer-link:hover {
-    color: var(--color-accent);
-}
-
         
+        .footer-link {
+            color: var(--color-secondary-text);
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--color-accent);
+        }
+
         /* Premium Table Row */
         .premium-table-row {
             transition: all 0.2s ease;
@@ -417,6 +430,15 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+        
+        /* Custom heights for charts */
+        .chart-height-64 {
+            height: 16rem;
+        }
+        
+        .progress-fill-yellow {
+            background: linear-gradient(90deg, #F6AD55, #FBD38D);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -433,7 +455,7 @@
                 <div class="flex space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
                     <!-- Homes Dropdown -->
                     <div class="dropdown-container">
-    <button class="nav-link flex items-center text-primary-text">
+    <button class="nav-link flex items-center text-primary-text" title="Homes Menu">
         Homes 
         <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -448,14 +470,13 @@
                     
                     <a href="Magazine.html" class="nav-link">Magazine</a>
                     <a href="blog.html" class="nav-link">Trending</a>
-                                        <a href="pricing.html" class="nav-link">Pricing</a>
-
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                     <a href="about.html" class="nav-link">About Us</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                     
                     <!-- Dashboard Dropdown -->
                    <div class="dropdown-container">
-    <button class="nav-link flex items-center text-primary-text">
+    <button class="nav-link flex items-center text-primary-text" title="Dashboard Menu">
         Dashboard
         <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -477,9 +498,19 @@
                 
                 <!-- Action Icons -->
                 <div class="flex items-center space-x-4 rtl:space-x-reverse rtl:mr-4">
-                    <button id="search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Search" title="Open Search">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
+                    <button 
+    id="search-open" 
+    class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" 
+    aria-label="Open Search" 
+    title="Open Search"
+>
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+        </path>
+    </svg>
+</button>
+
                    
 
   <a href="auth.html" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="User Profile" title="User Profile">
@@ -508,14 +539,23 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
                 
-                <button id="mobile-theme-toggle" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-                    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </button>
+                <button 
+    id="mobile-theme-toggle" 
+    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+    aria-label="Toggle Theme"
+    title="Toggle Theme"
+>
+    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+
+    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+</button>
+
 
                 <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Menu" title="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -542,7 +582,8 @@
                     </div>
                     <div class="mt-6 lg:mt-0">
                         <span class="status-indicator status-success">
-                            <i class="fas fa-circle mr-2" style="font-size: 6px;"></i>
+                                <i class="fas fa-circle mr-2 text-[6px]"></i>
+
                             System Status: Operational
                         </span>
                     </div>
@@ -562,7 +603,7 @@
                             </div>
                         </div>
                         <div class="premium-progress mt-4">
-                            <div class="premium-progress-fill" style="width: 78%"></div>
+                            <div class="premium-progress-fill progress-width-78"></div>
                         </div>
                         <div class="flex justify-between items-center mt-3">
                             <span class="text-sm font-medium text-green-500">+12% This Month</span>
@@ -582,7 +623,7 @@
                             </div>
                         </div>
                         <div class="premium-progress mt-4">
-                            <div class="premium-progress-fill" style="width: 92%"></div>
+                            <div class="premium-progress-fill progress-width-92"></div>
                         </div>
                         <div class="flex justify-between items-center mt-3">
                             <span class="text-sm font-medium text-accent">+8% MoM</span>
@@ -602,7 +643,7 @@
                             </div>
                         </div>
                         <div class="premium-progress mt-4">
-                            <div class="premium-progress-fill" style="width: 92%"></div>
+                            <div class="premium-progress-fill progress-width-92"></div>
                         </div>
                         <div class="flex justify-between items-center mt-3">
                             <span class="text-sm font-medium text-green-500">Industry Leader</span>
@@ -622,7 +663,7 @@
                             </div>
                         </div>
                         <div class="premium-progress mt-4">
-                            <div class="premium-progress-fill" style="width: 40%"></div>
+                            <div class="premium-progress-fill progress-width-40"></div>
                         </div>
                         <div class="flex justify-between items-center mt-3">
                             <span class="text-sm font-medium text-red-500">Requires Attention</span>
@@ -653,7 +694,7 @@
                             <button class="px-4 py-2 text-sm font-medium rounded-lg bg-accent text-primary-text rounded-lg hover:bg-accent/90 transition duration-200">Annual</button>
                         </div>
                     </div>
-                    <div class="chart-placeholder h-64 rounded-xl">
+                    <div class="chart-placeholder chart-height-64 rounded-xl">
                         <div class="relative z-10 text-center">
                             <p class="text-lg font-semibold text-primary-text mb-2">Interactive Chart</p>
                             <p class="text-sm text-secondary-text">Hover to view detailed metrics</p>
@@ -771,7 +812,7 @@
                                     <div class="flex items-center justify-between mt-2">
                                         <div class="flex-1 mr-4">
                                             <div class="premium-progress">
-                                                <div class="premium-progress-fill" style="width: 45%"></div>
+                                                <div class="premium-progress-fill progress-width-45"></div>
                                             </div>
                                             <span class="text-xs text-secondary-text mt-1 block">45% Complete</span>
                                         </div>
@@ -794,7 +835,7 @@
                                     <div class="flex items-center justify-between mt-2">
                                         <div class="flex-1 mr-4">
                                             <div class="premium-progress">
-                                                <div class="premium-progress-fill" style="width: 85%"></div>
+                                                <div class="premium-progress-fill progress-width-85"></div>
                                             </div>
                                             <span class="text-xs text-secondary-text mt-1 block">85% Complete</span>
                                         </div>
@@ -817,7 +858,7 @@
                                     <div class="flex items-center justify-between mt-2">
                                         <div class="flex-1 mr-4">
                                             <div class="premium-progress">
-                                                <div class="premium-progress-fill" style="width: 95%"></div>
+                                                <div class="premium-progress-fill progress-width-95"></div>
                                             </div>
                                             <span class="text-xs text-secondary-text mt-1 block">95% Complete</span>
                                         </div>
@@ -848,7 +889,7 @@
                                 </div>
                                 <div class="text-right">
                                     <span class="text-sm font-medium text-green-500 flex items-center">
-                                        <i class="fas fa-circle mr-1" style="font-size: 6px;"></i>
+                                            <i class="fas fa-circle mr-1 text-[6px]"></i>
                                         Online
                                     </span>
                                     <p class="text-xs text-secondary-text">Active now</p>
@@ -954,7 +995,7 @@
                         </div>
                         
                         <div class="premium-progress">
-                            <div class="premium-progress-fill" style="width: 75%"></div>
+                            <div class="premium-progress-fill progress-width-75"></div>
                         </div>
                         
                         <div class="flex justify-between text-sm">
@@ -1025,7 +1066,7 @@
                     <div class="text-4xl font-bold text-primary-text mb-2">85 ms</div>
                     <p class="text-secondary-text">Average response time</p>
                     <div class="premium-progress mt-4">
-                        <div class="premium-progress-fill" style="width: 95%"></div>
+                        <div class="premium-progress-fill progress-width-95"></div>
                     </div>
                 </div>
 
@@ -1043,7 +1084,7 @@
                     <div class="text-4xl font-bold text-primary-text mb-2">95.2%</div>
                     <p class="text-secondary-text">Cache hit rate</p>
                     <div class="premium-progress mt-4">
-                        <div class="premium-progress-fill bg-yellow-500" style="width: 95.2%"></div>
+                        <div class="premium-progress-fill progress-fill-yellow progress-width-95-2"></div>
                     </div>
                 </div>
 
@@ -1145,7 +1186,7 @@
 
             <nav class="flex flex-col space-y-2 py-4">
                 <div>
-                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
+                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle" title="Homes Menu">
                         Homes <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
@@ -1155,14 +1196,13 @@
                 </div>
                 <a href="Magazine.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Magazine</a>
                 <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Trending</a>
-                                <a href="pricing.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Pricing</a>
-
+                <a href="pricing.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Pricing</a>
                 <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About</a>
                 <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Contact</a>
             </nav>
             
             <div>
-                <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle">
+                <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle" title="Dashboard Menu">
                     Dashboard
                     <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -1239,10 +1279,9 @@
                     </p>
                     <div class="flex flex-col space-y-3">
                         <input type="email" placeholder="Your email address" aria-label="Email for Newsletter" class="p-3 text-sm rounded-lg bg-gray-800 border border-gray-700 focus:ring-1 focus:ring-gold focus:outline-none text-white placeholder-gray-400">
-                       <button class="bg-gold text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-200 shadow-md w-full">
-    Subscribe
-</button>
-
+                        <button class="bg-gold text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-200 shadow-md w-full" title="Subscribe to newsletter">
+                            Subscribe
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1255,7 +1294,6 @@
 
     
     <script>
-        // Your existing JavaScript remains exactly the same
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.documentElement;
 

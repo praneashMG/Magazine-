@@ -63,81 +63,82 @@
         #main-footer .footer-link:hover {
             color: var(--color-accent);
         }
-/* IMPROVED DROPDOWN WITH BUFFER ZONE */
-.dropdown-container {
-    position: relative;
-}
+        
+        /* IMPROVED DROPDOWN WITH BUFFER ZONE */
+        .dropdown-container {
+            position: relative;
+        }
 
-/* Create invisible hover zone around dropdown */
-.dropdown-container::before {
-    content: '';
-    position: absolute;
-    top: -20px; /* Extend 20px above */
-    left: -20px; /* Extend 20px left */
-    right: -20px; /* Extend 20px right */
-    bottom: -20px; /* Extend 20px below */
-    z-index: 10;
-    background: transparent;
-    pointer-events: auto;
-}
+        /* Create invisible hover zone around dropdown */
+        .dropdown-container::before {
+            content: '';
+            position: absolute;
+            top: -20px; /* Extend 20px above */
+            left: -20px; /* Extend 20px left */
+            right: -20px; /* Extend 20px right */
+            bottom: -20px; /* Extend 20px below */
+            z-index: 10;
+            background: transparent;
+            pointer-events: auto;
+        }
 
-/* Dropdown Menu */
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    z-index: 50;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
 
-/* Show dropdown when container is hovered */
-.dropdown-container:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-}
+        /* Show dropdown when container is hovered */
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            display: block;
+        }
 
-/* Keep dropdown visible when hovering over it */
-.dropdown-menu:hover {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-}
+        /* Keep dropdown visible when hovering over it */
+        .dropdown-menu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            display: block;
+        }
 
-/* Dropdown items */
-.dropdown-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: var(--color-primary-text);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    border-bottom: 1px solid var(--color-border);
-    pointer-events: auto;
-}
+        /* Dropdown items */
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+            pointer-events: auto;
+        }
 
-.dropdown-menu a:last-child {
-    border-bottom: none;
-}
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
 
-.dropdown-menu a:hover {
-    background-color: var(--color-hover);
-    color: var(--color-accent);
-    padding-left: 1.25rem;
-}
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent);
+            padding-left: 1.25rem;
+        }
 
         /* Nav Link Underline Animation (Custom CSS for premium effect) */
         .nav-link {
@@ -160,39 +161,90 @@
         .nav-link:hover::after, .nav-link.active::after {
             transform: scaleX(1);
         }
+        
         /* Dropdown Flicker Fix: Applies delay to all absolute elements inside a group */
         .group > div.absolute {
             transition-delay: 200ms;
         }
         
-        /* Custom utility class for the top-positioned drawer */
-        .translate-y-[-100%] {
-            transform: translateY(-100%);
-        }
+      
 
-        /* Custom Styles for Main Layout Sections (Included for variable consistency) */
+        /* Custom Styles for Main Layout Sections (Fixed @apply directives) */
         .section-heading {
             font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-            @apply text-3xl font-bold text-primary-text;
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-primary-text); /* text-primary-text */
         }
         
         .trending-card {
-            @apply flex items-start space-x-4 rtl:space-x-reverse group border-b border-border pb-4 last:border-b-0;
+            display: flex; /* flex */
+            align-items: flex-start; /* items-start */
+            gap: 1rem; /* space-x-4 equivalent */
+            border-bottom: 1px solid var(--color-border); /* border-b border-border */
+            padding-bottom: 1rem; /* pb-4 */
         }
+        
+        .trending-card:last-child {
+            border-bottom: none; /* last:border-b-0 */
+        }
+        
         .number-circle {
-            @apply flex-shrink-0 w-8 h-8 text-lg font-bold flex items-center justify-center rounded-full shadow-lg;
+            flex-shrink: 0; /* flex-shrink-0 */
+            width: 2rem; /* w-8 */
+            height: 2rem; /* h-8 */
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 700; /* font-bold */
+            display: flex; /* flex */
+            align-items: center; /* items-center */
+            justify-content: center; /* justify-center */
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
         }
+        
         .tech-list-card {
-            @apply p-4 border-b border-border transition duration-200 hover:bg-hover;
+            padding: 1rem; /* p-4 */
+            border-bottom: 1px solid var(--color-border); /* border-b border-border */
+            transition: background-color 0.2s; /* transition duration-200 */
         }
+        
+        .tech-list-card:hover {
+            background-color: var(--color-hover); /* hover:bg-hover */
+        }
+        
         .lifestyle-scroll-card {
-            @apply flex-shrink-0 w-72 md:w-80 cursor-pointer p-2 rounded-lg transition duration-300;
+            flex-shrink: 0; /* flex-shrink-0 */
+            width: 18rem; /* w-72 */
+            cursor: pointer; /* cursor-pointer */
+            padding: 0.5rem; /* p-2 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: all 0.3s; /* transition duration-300 */
         }
+        
+        @media (min-width: 768px) {
+            .lifestyle-scroll-card {
+                width: 20rem; /* md:w-80 */
+            }
+        }
+        
         .lifestyle-scroll-card:hover {
-            @apply shadow-2xl scale-[1.03] bg-hover;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+            transform: scale(1.03); /* scale-[1.03] */
+            background-color: var(--color-hover); /* bg-hover */
         }
+        
         .small-grid-card {
-            @apply p-3 cursor-pointer rounded-lg transition duration-300 hover:shadow-xl hover:border-accent border border-border bg-background;
+            padding: 0.75rem; /* p-3 */
+            cursor: pointer; /* cursor-pointer */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: all 0.3s; /* transition duration-300 */
+            border: 1px solid var(--color-border); /* border border-border */
+            background-color: var(--color-background); /* bg-background */
+        }
+        
+        .small-grid-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* hover:shadow-xl */
+            border-color: var(--color-accent); /* hover:border-accent */
         }
     </style>
 </head>
