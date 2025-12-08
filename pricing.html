@@ -82,7 +82,81 @@
         .nav-link:hover::after, .nav-link.active::after {
             transform: scaleX(1);
         }
+/* IMPROVED DROPDOWN WITH BUFFER ZONE */
+.dropdown-container {
+    position: relative;
+}
 
+/* Create invisible hover zone around dropdown */
+.dropdown-container::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Extend 20px above */
+    left: -20px; /* Extend 20px left */
+    right: -20px; /* Extend 20px right */
+    bottom: -20px; /* Extend 20px below */
+    z-index: 10;
+    background: transparent;
+    pointer-events: auto;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* Show dropdown when container is hovered */
+.dropdown-container:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    display: block;
+}
+
+/* Keep dropdown visible when hovering over it */
+.dropdown-menu:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    display: block;
+}
+
+/* Dropdown items */
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--color-primary-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--color-border);
+    pointer-events: auto;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--color-hover);
+    color: var(--color-accent);
+    padding-left: 1.25rem;
+}
         /* Pricing Page Specific Styles */
         .pricing-card {
             border: 1px solid var(--color-border);
@@ -168,49 +242,42 @@
             <div class="hidden lg:flex items-center space-x-6">
                 <div class="flex space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
                     
-                    <div class="relative group">
-                        <button class="nav-link flex items-center text-primary-text">
-                            Homes <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" 
- fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        
-                        <div class="absolute hidden group-hover:block 
-                            bg-background border border-border mt-1 rounded-lg shadow-xl min-w-[150px] z-60 overflow-hidden 
-                            transition-all duration-150 delay-150"> 
-                            
-                            <a href="index.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">Home 1 - Default</a>
-                            <a href="home2.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">Home 2 - Editorial</a>
-                        </div>
-                    </div>
-                    
+                   <div class="dropdown-container">
+    <button class="nav-link flex items-center text-primary-text">
+        Homes 
+        <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
+    
+    <div class="dropdown-menu">
+        <a href="index.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">Home 1</a>
+        <a href="home2.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">Home 2</a>
+    </div>
+</div>
                     <a href="Magazine.html" class="nav-link">Magazine</a>
                     <a href="blog.html" class="nav-link">Trending</a>
                                         <a href="pricing.html" class="nav-link active">Pricing</a>
 
                     <a href="about.html" class="nav-link">About Us</a>
                     <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="relative group">
-  <button class="nav-link flex items-center text-primary-text">
-      Dashboard
-      <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" 
- fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-  </button>
+                   <div class="dropdown-container">
+    <button class="nav-link flex items-center text-primary-text">
+        Dashboard
+        <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
 
-  <div class="absolute hidden group-hover:block
-      bg-background border border-border mt-1 rounded-lg shadow-xl min-w-[170px] z-60 overflow-hidden
-      transition-all duration-150 delay-150">
-
-      <a href="userdash.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">
-          User Dashboard
-      </a>
-      <a href="dashboard.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">
-          Admin Dashboard
-      </a>
-  </div>
+    <div class="dropdown-menu">
+        <a href="userdash.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">
+            User Dashboard
+        </a>
+        <a href="dashboard.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">
+            Admin Dashboard
+        </a>
+    </div>
 </div>
-
                 </div>
                 <div class="w-px h-6 bg-border mx-3"></div>
                 
