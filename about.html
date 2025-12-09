@@ -62,8 +62,23 @@
         }
         #main-footer .footer-link:hover {
             color: var(--color-accent);
-        }
-        
+        }.about-hero-bg {
+    background-image: url('/assets/about hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+       .metric-success-bg {
+    background-image: url('assets/Metric of Success.jpg');
+    background-size: cover;
+    background-position: center;
+}
+ .map-frame {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
         /* IMPROVED DROPDOWN WITH BUFFER ZONE */
         .dropdown-container {
             position: relative;
@@ -339,19 +354,24 @@
                 </button>
                 
 
-<button id="mobile-theme-toggle" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-        <!-- Sun Icon (Light Mode) -->
-        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
+<button 
+    id="mobile-theme-toggle" 
+    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+    aria-label="Toggle theme"
+    title="Toggle theme"
+>
+    <!-- Sun Icon (Light Mode) -->
+    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
 
-        <!-- Moon Icon (Dark Mode) -->
-        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-    </button>
+    <!-- Moon Icon (Dark Mode) -->
+    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+</button>
 
                 <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Menu" title="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -375,16 +395,15 @@
                 </p>
             </div>
 
-            <div class="lg:col-span-2 relative rounded-xl p-8 shadow-2xl transition duration-500 transform hover:scale-[1.02] 
-                bg-cover bg-center group" 
-            style="background-image: url('assets/about\ hero.jpg');">
+          <div class="lg:col-span-2 relative rounded-xl p-8 shadow-2xl transition duration-500 transform hover:scale-[1.02] 
+                bg-cover bg-center group about-hero-bg">
         
-        <div class="absolute inset-0 bg-primary-text rounded-xl opacity-90 group-hover:opacity-85 transition-opacity duration-500"></div>
-        
-        <div class="relative z-10">
-            <h3 class="text-3xl font-serif font-bold text-accent mb-4 border-b border-accent/50 pb-2">
-                Our Core Mission
-            </h3>
+    <div class="absolute inset-0 bg-primary-text rounded-xl opacity-90 group-hover:opacity-85 transition-opacity duration-500"></div>
+    
+    <div class="relative z-10">
+        <h3 class="text-3xl font-serif font-bold text-accent mb-4 border-b border-accent/50 pb-2">
+            Our Core Mission
+        </h3>
             <p class="text-white leading-relaxed mb-4">
                 To serve as the definitive filter for information overload, empowering global leaders with focused analysis and strategic depth.
             </p>
@@ -490,20 +509,19 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-3">
-                <div class="h-80 w-full rounded-xl overflow-hidden shadow-2xl border border-accent/50 transition duration-500 hover:shadow-accent/50">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=London%2C%20UK&t=&z=12&ie=UTF8&iwloc=&output=embed"
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Global Editorial Hubs Map"
-                    ></iframe>
-                </div>
-            </div>
+          <div class="lg:col-span-3">
+    <div class="h-80 w-full rounded-xl overflow-hidden shadow-2xl border border-accent/50 transition duration-500 hover:shadow-accent/50">
+        <iframe 
+            src="https://maps.google.com/maps?q=London%2C%20UK&t=&z=12&ie=UTF8&iwloc=&output=embed"
+            class="map-frame"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Global Editorial Hubs Map"
+        ></iframe>
+    </div>
+</div>
+
         </section>
         <section class="mb-24">
             <h2 class="section-heading mb-12 border-l-4 border-accent pl-4">
@@ -595,23 +613,22 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 
-                <div class="lg:col-span-2 relative rounded-xl p-10 md:p-16 shadow-2xl border border-accent/50 text-white flex flex-col justify-center transition duration-500 hover:shadow-accent/50 group overflow-hidden" 
-                    style="background-image: url('assets/Metric\ of\ Success.jpg'); background-size: cover; background-position: center;">
-                    
-                    <div class="absolute inset-0 bg-primary-text rounded-xl opacity-80 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    
-                    <div class="relative z-10">
-                        <p class="text-xl font-semibold uppercase tracking-widest text-accent mb-4">
-                            Metric of Success
-                        </p>
-                        <span class="text-7xl md:text-9xl font-extrabold font-serif leading-none">
-                            98%
-                        </span>
-                        <p class="text-3xl font-serif font-bold mt-4 text-accent">
-                            Client Retention & Satisfaction Score
-                        </p>
-                    </div>
-                </div>
+              <div class="lg:col-span-2 relative rounded-xl p-10 md:p-16 shadow-2xl border border-accent/50 text-white flex flex-col justify-center transition duration-500 hover:shadow-accent/50 group overflow-hidden metric-success-bg">
+    
+    <div class="absolute inset-0 bg-primary-text rounded-xl opacity-80 group-hover:opacity-70 transition-opacity duration-500"></div>
+    
+    <div class="relative z-10">
+        <p class="text-xl font-semibold uppercase tracking-widest text-accent mb-4">
+            Metric of Success
+        </p>
+        <span class="text-7xl md:text-9xl font-extrabold font-serif leading-none">
+            98%
+        </span>
+        <p class="text-3xl font-serif font-bold mt-4 text-accent">
+            Client Retention & Satisfaction Score
+        </p>
+    </div>
+</div>
 
                 <div class="lg:col-span-1 space-y-6">
                     
