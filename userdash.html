@@ -203,7 +203,14 @@
             padding-left: 1.25rem;
         }
 
-      
+      .avatar-text {
+    color: black;
+}
+
+html[data-theme='dark'] .avatar-text {
+    color: white !important;
+}
+
         
         /* Premium Section Styles */
         .section-heading {
@@ -447,11 +454,17 @@
 
                     <!-- Avatar -->
                     <div class="relative mx-auto sm:mx-0 mb-4 sm:mb-0">
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-accent to-accent/70 
-                            flex items-center justify-center text-2xl sm:text-3xl font-bold text-black 
-                            border-4 border-background shadow-2xl">
-                            JD
-                        </div>
+                     <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full 
+            bg-gradient-to-br from-accent to-accent/70 
+            dark:bg-gradient-to-br dark:from-accent/40 dark:to-accent/20
+            flex items-center justify-center 
+            text-2xl sm:text-3xl font-bold 
+            avatar-text
+            border-4 border-background shadow-2xl">
+    JD
+</div>
+
+
 
                         <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-background flex items-center justify-center">
                             <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -899,7 +912,17 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     <span class="text-xs mt-1 text-secondary-text">Profile</span>
                 </a>
-
+<button id="mobile-lang-icon"
+        class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200"
+        title="Change Language"
+        aria-label="Change Language"
+    >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
+        </svg>
+        <span class="text-xs mt-1 text-secondary-text">RTL</span>
+    </button>
                 <button class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200" title="Bookmarks" aria-label="Bookmarks">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"></path></svg>
                     <span class="text-xs mt-1 text-secondary-text">Bookmarks</span>
@@ -909,7 +932,7 @@
     </div>
     
     <!-- Footer -->
-    <footer id="main-footer" class="pt-12 mt-12 transition-colors duration-300">
+    <!-- <footer id="main-footer" class="pt-12 mt-12 transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-10 border-b border-gray-700">
                 
@@ -970,7 +993,7 @@
                 &copy; 2025 MagazinePro. All rights reserved. | <span class="hover:text-gold transition duration-200">Legal Disclaimer.</span>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1106,6 +1129,13 @@
             };
 
             if (langButton) langButton.addEventListener('click', toggleLanguage);
+            
+const mobileLangButton = document.getElementById('mobile-lang-icon');
+
+if (mobileLangButton) {
+    mobileLangButton.addEventListener('click', toggleLanguage);
+}
+
 
             // Initialize on load
             const savedLang = localStorage.getItem('language') || 'en';

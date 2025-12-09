@@ -266,19 +266,19 @@
 
         /* Background classes for inline styles */
         .hero-bg {
-            background-image: url('https://i2.wp.com/static.vecteezy.com/system/resources/thumbnails/013/695/147/original/world-map-background-news-studio-background-for-news-report-and-breaking-news-on-world-live-report-video.jpg');
+            background-image: url('/assets/news.jpg');
             background-size: cover;
             background-position: center;
         }
         
         .collaborate-bg {
-            background-image: url('https://img.freepik.com/premium-photo/texture-abstract-black-satin-fabric_673719-3070.jpg');
+            background-image: url('/assets/collobarative.jpg');
             background-size: cover;
             background-position: center;
         }
         
         .trust-bg {
-            background-image: url('https://www.nextlevelacoustics.com/wp-content/uploads/2018/05/nl-dark-background.jpg');
+            background-image: url('/assets/black1.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -306,7 +306,7 @@
                         
                         <div class="dropdown-menu">
                             <a href="index.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">Home 1</a>
-                            <a href="home2.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">Home 2 - Editorial</a>
+                            <a href="home2.html" class="block px-4 py-3 hover:bg-hover text-sm text-primary-text transition duration-150">Home 2</a>
                         </div>
                     </div>
                     
@@ -742,7 +742,17 @@
                     </svg>
                     <span class="text-xs mt-1 text-secondary-text">Profile</span>
                 </a>
-
+<button id="mobile-lang-icon"
+        class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200"
+        title="Change Language"
+        aria-label="Change Language"
+    >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
+        </svg>
+        <span class="text-xs mt-1 text-secondary-text">RTL</span>
+    </button>
                 <button class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200" title="Bookmarks" aria-label="Bookmarks">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"></path>
@@ -960,6 +970,13 @@
             // Initialize on load
             const savedLang = localStorage.getItem('language') || 'en';
             document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+            
+const mobileLangButton = document.getElementById('mobile-lang-icon');
+
+if (mobileLangButton) {
+    mobileLangButton.addEventListener('click', toggleLanguage);
+}
+
         });
     </script>
 </body>

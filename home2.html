@@ -189,7 +189,7 @@
         
         /* Added classes to replace inline styles */
         .bg-editorial-cta {
-            background-image: url('https://i.pinimg.com/originals/0f/c9/f5/0fc9f59fbb9de7ff2e995239c9d41156.jpg');
+            background-image: url('/assets/flower.jpg');
         }
         
         .text-hero {
@@ -350,7 +350,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-500 transform hover:scale-[1.03] hover:shadow-3xl cursor-pointer border border-border hover:border-accent">
-                    <img src="https://miro.medium.com/v2/resize:fit:1358/1*Jc2KAC6U7tE9HmuAUVU0NQ.png" alt="AI in Enterprise" class="w-full h-52 object-cover transition duration-500 group-hover:opacity-80">
+                    <img src="assets/stories1.png" alt="AI in Enterprise" class="w-full h-52 object-cover transition duration-500 group-hover:opacity-80">
                     <div class="p-6">
                         <span class="text-xs font-bold uppercase tracking-widest text-accent mb-2 block">Technology</span>
                         <h3 class="text-2xl font-serif font-extrabold text-primary-text group-hover:text-accent transition duration-300 mb-2 leading-snug">
@@ -364,7 +364,7 @@
                 </article>
 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-500 transform hover:scale-[1.03] hover:shadow-3xl cursor-pointer border border-border hover:border-accent">
-                    <img src="https://i.ytimg.com/vi/4fJ3NL__a2s/maxresdefault.jpg" alt="Market Trends" class="w-full h-52 object-cover transition duration-500 group-hover:opacity-80">
+                    <img src="assets/stories2.jpg" alt="Market Trends" class="w-full h-52 object-cover transition duration-500 group-hover:opacity-80">
                     <div class="p-6">
                         <span class="text-xs font-bold uppercase tracking-widest text-accent mb-2 block">Finance</span>
                         <h3 class="text-2xl font-serif font-extrabold text-primary-text group-hover:text-accent transition duration-300 mb-2 leading-snug">
@@ -378,7 +378,7 @@
                 </article>
 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-500 transform hover:scale-[1.03] hover:shadow-3xl cursor-pointer border border-border hover:border-accent">
-                    <img src="https://archinect.gumlet.io/uploads/48/488c1cb1e665eea90a3846f5e82daaca.jpg?fit=crop&auto=compress%2Cformat&enlarge=true&w=615&dpr=3" alt="Future of Remote Work" class="w-full h-52 object-cover transition duration-500 group-hover:opacity-80">
+                    <img src="assets/stories3.jpg" alt="Future of Remote Work" class="w-full h-52 object-cover transition duration-500 group-hover:opacity-80">
                     <div class="p-6">
                         <span class="text-xs font-bold uppercase tracking-widest text-accent mb-2 block">Leadership</span>
                         <h3 class="text-2xl font-serif font-bold text-primary-text group-hover:text-accent transition duration-300 mb-2 leading-snug">
@@ -453,7 +453,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-300 transform hover:scale-[1.03] hover:shadow-2xl hover:border-accent cursor-pointer border border-border">
-                    <img src="https://miro.medium.com/v2/resize:fit:1358/1*kwV4aehA1u1FUnXBsesmOQ.jpeg" 
+                    <img src="assets/tech1.jpg" 
                         alt="Prompt Engineering as a Service" 
                         class="w-full h-48 object-cover transition duration-300 group-hover:brightness-105">
                     <div class="p-5">
@@ -466,7 +466,7 @@
                 </article>
                 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-300 transform hover:scale-[1.03] hover:shadow-2xl hover:border-accent cursor-pointer border border-border">
-                    <img src="https://miro.medium.com/v2/resize:fit:1200/0*eiyR4YQ_25ggx4-X.png" 
+                    <img src="assets/tech2.png" 
                         alt="DevOps Flow" 
                         class="w-full h-48 object-cover transition duration-300 group-hover:brightness-105">
                     <div class="p-5">
@@ -479,7 +479,7 @@
                 </article>
                 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-300 transform hover:scale-[1.03] hover:shadow-2xl hover:border-accent cursor-pointer border border-border">
-                    <img src="https://imageio.forbes.com/specials-images/imageserve/67c9e5eecc3c84502d343451/0x0.jpg?format=jpg&amp;height=900&amp;width=1600&amp;fit=bounds" 
+                    <img src="assets/tech3.jpg " 
                         alt="Zero-Trust Architecture" 
                         class="w-full h-48 object-cover transition duration-300 group-hover:brightness-105">
                     <div class="p-5">
@@ -492,7 +492,7 @@
                 </article>
                 
                 <article class="group bg-background rounded-xl overflow-hidden shadow-xl transition duration-300 transform hover:scale-[1.03] hover:shadow-2xl hover:border-accent cursor-pointer border border-border">
-                    <img src="https://netdepot.com/wp-content/uploads/2020/06/the-cloud.jpeg" 
+                    <img src="assets/tech4.jpeg" 
                         alt="Multi-Cloud" 
                         class="w-full h-48 object-cover transition duration-300 group-hover:brightness-105">
                     <div class="p-5">
@@ -625,6 +625,17 @@
                     </svg>
                     <span class="text-xs mt-1 text-secondary-text">Profile</span>
                 </a>
+                <button id="mobile-lang-icon"
+        class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200"
+        title="Change Language"
+        aria-label="Change Language"
+    >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
+        </svg>
+        <span class="text-xs mt-1 text-secondary-text">RTL</span>
+    </button>
                
                 <button class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200" title="Bookmarks" aria-label="Bookmarks">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -894,6 +905,13 @@
 
             const savedLang = localStorage.getItem('language') || 'en';
             document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+            
+const mobileLangButton = document.getElementById('mobile-lang-icon');
+
+if (mobileLangButton) {
+    mobileLangButton.addEventListener('click', toggleLanguage);
+}
+
             
         });
         

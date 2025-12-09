@@ -491,6 +491,17 @@
           </svg>
           <span class="text-xs mt-1 text-secondary-text">Profile</span>
         </a>
+        <button id="mobile-lang-icon"
+        class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200"
+        title="Change Language"
+        aria-label="Change Language"
+    >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
+        </svg>
+        <span class="text-xs mt-1 text-secondary-text">RTL</span>
+    </button>
         <button class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200"
                 title="Bookmarks" aria-label="Bookmarks">
           <svg class="w-6 h-6" fill="none" stroke="currentColor"
@@ -979,6 +990,13 @@
       if (langButton) langButton.addEventListener('click', toggleLanguage);
       const savedLang = localStorage.getItem('language') || 'en';
       document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+      
+const mobileLangButton = document.getElementById('mobile-lang-icon');
+
+if (mobileLangButton) {
+    mobileLangButton.addEventListener('click', toggleLanguage);
+}
+
 
       /* --- ARTICLE DATA (MATCH YOUR SLUGS) --- */
       const articles = {

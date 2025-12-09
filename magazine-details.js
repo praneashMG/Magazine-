@@ -7,7 +7,7 @@ const articles = {
         date: 'October 15, 2025',
         author: 'Dr. Evelyn Reed',
         readTime: '8 min read',
-        image: 'https://e-cis.info/upload/iblock/e25/2935v4sxt3ud55cz5dm84mz0u4f2sb1z.jpg',
+        image: '/assets/Mag1.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">The world stands at the precipice of a new technological epoch, largely driven by the explosive development in Artificial Intelligence. Large Language Models (LLMs) have not only achieved human-level fluency but are beginning to demonstrate emergent reasoning capabilities.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">Emergent Capabilities and Ethical Questions</h3>
@@ -22,7 +22,7 @@ const articles = {
         date: 'September 5, 2025',
         author: 'Anya Sharma',
         readTime: '6 min read',
-        image: 'https://i.ytimg.com/vi/9bj9Ylhf9e0/maxresdefault.jpg',
+        image: '/assets/urban.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">Smart cities are no longer a concept; they are a reality powered by the Internet of Things (IoT) and big data. Data streams from traffic sensors, utility meters, and public Wi-Fi are being used to optimize city operations in real-time.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">IoT Infrastructure and Efficiency</h3>
@@ -36,7 +36,7 @@ const articles = {
         date: 'August 1, 2025',
         author: 'Liam O\'Connell',
         readTime: '10 min read',
-        image: 'https://ak.picdn.net/shutterstock/videos/1089414899/thumb/10.jpg',
+        image: '/assets/dollar.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">The commercialization of space has sparked a modern-day gold rush. Private companies are rapidly deploying satellites for global internet coverage, and the goal of space tourism is now firmly within reach.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">Beyond Earth Orbit</h3>
@@ -50,7 +50,7 @@ const articles = {
         date: 'August 20, 2025',
         author: 'The Editorial Team',
         readTime: '7 min read',
-        image: 'https://mma.prnewswire.com/media/1930674/Global_CSI_10_27_2022.jpg?p=facebook',
+        image: '/assets/c1.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">A look at the most critical ecological predictions and necessary mitigation strategies for the next two decades. The focus must shift from purely conservation to large-scale ecological engineering projects, such as carbon capture.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">Global Temperature Targets</h3>
@@ -64,7 +64,7 @@ const articles = {
         date: 'July 1, 2025',
         author: 'Dr. Chen',
         readTime: '9 min read',
-        image: 'https://media.nature.com/lw1200/magazine-assets/d44151-024-00076-w/d44151-024-00076-w_27128528.jpg',
+        image: '/assets/c2.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">Examining the revolutionary gene-editing technology, CRISPR, and the complex ethical boundaries it presents to humanity. The precision of the Cas9 enzyme has opened doors to curing hereditary diseases.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">Somatic vs. Germline Editing</h3>
@@ -78,7 +78,7 @@ const articles = {
         date: 'June 15, 2025',
         author: 'Maria Lopez',
         readTime: '5 min read',
-        image: 'https://nypost.com/wp-content/uploads/sites/2/2025/05/104964053.jpg?resize=150',
+        image: '/assets/c3.jpg',
         body: `
             <p class="mb-6 text-lg text-gray-700">The world of decentralized finance is evolving beyond simple cryptocurrencies to complex smart contracts and digital assets. Regulatory clarity remains the biggest hurdle for widespread institutional adoption.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">Decentralized Autonomous Organizations (DAOs)</h3>
@@ -92,7 +92,7 @@ const articles = {
         date: 'May 1, 2025',
         author: 'Kenji Sato',
         readTime: '4 min read',
-        image: 'https://cdn.artificialpaintings.com/uploads/uploads/2024/06/70_digital_art_vs_traditional_art.webp',
+        image: '/assets/c4.webp',
         body: `
             <p class="mb-6 text-lg text-gray-700">How Non-Fungible Tokens (NFTs) are redefining what it means to own a piece of digital art in the age of infinite reproduction. NFTs provide a crucial element of scarcity and verifiable provenance.</p>
             <h3 class="text-3xl font-bold text-gray-900 mb-4 mt-8">The Metadata Challenge</h3>
@@ -108,7 +108,7 @@ const articles = {
         date: 'October 1, 2025',
         author: 'Reviewer Staff',
         readTime: '3 min read',
-        image: 'https://i.pinimg.com/originals/13/e1/8f/13e18fa307c9ef3fe6bded748027e81d.jpg',
+        image: '/assets/b1.jpg',
         body: '<p class="mb-6 text-lg text-gray-700">A concise analysis of Dr. Aris Thorne\'s new book, which explores the balance between AI\'s incredible potential and its catastrophic risks. A must-read for tech ethicists and casual observers alike. The book particularly excels in its breakdown of computational resource allocation.</p>',
     },
 
@@ -118,7 +118,7 @@ const articles = {
         date: 'September 20, 2025',
         author: 'The Editorial Team',
         readTime: '12 min read',
-        image: 'https://hirebee.ai/wp-content/uploads/2023/08/candidate-offering-feedback-to-recruiter.png',
+        image: '/assets/b2.png',
         body: '<p class="mb-6 text-lg text-gray-700">Exclusive insights from Jane Smith, CEO of Global Energy Solutions, on the future of renewable energy investment and corporate responsibility in a shifting market. She details the company\'s $500 million investment into offshore wind infrastructure.</p>',
     },
 
@@ -128,7 +128,7 @@ const articles = {
         date: 'September 10, 2025',
         author: 'Photographer Staff',
         readTime: '5 min read',
-        image: 'https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/3775536/leicaq-9.0.jpg',
+        image: '/assets/b3.jpg',
         body: '<p class="mb-6 text-lg text-gray-700">A visual journey through the mega-cities of Asia, showcasing the architectural innovation, population density challenges, and unique cultural blend defining their rapid development. We focus on four major metropolitan areas: Tokyo, Shanghai, Mumbai, and Jakarta.</p>',
     },
 };
