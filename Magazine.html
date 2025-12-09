@@ -84,56 +84,52 @@
         }
 
         /* IMPROVED DROPDOWN WITH BUFFER ZONE */
-        .dropdown-container {
+        .dropdown-wrapper {
             position: relative;
         }
         
-        /* Create invisible hover zone around dropdown */
-        .dropdown-container::before {
+        /* Create invisible buffer zone above dropdown */
+        .dropdown-wrapper::before {
             content: '';
             position: absolute;
-            top: -20px; /* Extend 20px above */
-            left: -20px; /* Extend 20px left */
-            right: -20px; /* Extend 20px right */
-            bottom: -20px; /* Extend 20px below */
-            z-index: 10;
+            left: 0;
+            right: 0;
+            height: 20px; /* ~2cm buffer zone */
+            bottom: 100%; /* Position above dropdown */
+            z-index: 100;
             background: transparent;
-            pointer-events: auto;
         }
         
-        /* Dropdown Menu */
+        /* Dropdown Menu Styling */
         .dropdown-menu {
             position: absolute;
-            top: calc(100% + 5px);
+            top: calc(100% + 5px); /* Space between button and menu */
             left: 0;
             background-color: var(--color-background);
             border: 1px solid var(--color-border);
             border-radius: 0.5rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             min-width: 200px;
-            z-index: 50;
+            z-index: 1000;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
-            pointer-events: none;
         }
         
-        /* Show dropdown when container is hovered */
-        .dropdown-container:hover .dropdown-menu {
+        /* Show dropdown when hovering over wrapper */
+        .dropdown-wrapper:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
-            pointer-events: auto;
             display: block;
         }
         
-        /* Keep dropdown visible when hovering over it */
+        /* Keep dropdown open when hovering over menu */
         .dropdown-menu:hover {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
-            pointer-events: auto;
             display: block;
         }
         
@@ -146,7 +142,6 @@
             font-size: 0.875rem;
             transition: all 0.2s ease;
             border-bottom: 1px solid var(--color-border);
-            pointer-events: auto;
         }
         
         .dropdown-menu a:last-child {
@@ -158,9 +153,18 @@
             color: var(--color-accent);
             padding-left: 1.25rem;
         }
-
-       
         
+        /* Connect dropdown to button with invisible bridge */
+        .dropdown-wrapper .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: transparent;
+        }
+
         /* Custom Styles for Main Layout Sections */
         .section-heading {
             font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -238,7 +242,7 @@
 
         /* Mobile dropdown adjustments */
         @media (max-width: 1024px) {
-            .dropdown-container::before {
+            .dropdown-wrapper::before {
                 display: none;
             }
             .dropdown-menu {
@@ -249,9 +253,8 @@
                 visibility: visible;
                 transform: none;
                 display: none;
-                pointer-events: auto;
             }
-            .dropdown-container.active .dropdown-menu {
+            .dropdown-wrapper:hover .dropdown-menu {
                 display: block;
             }
         }
@@ -276,17 +279,18 @@
 <body class="antialiased">
     <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-16">
-            <a href="#" class="text-3xl font-serif font-extrabold tracking-wide">
+
+            <a href="#" class="text-3xl font-serif font-extrabold tracking-wide">   
                 <span class="text-gold">Magazine</span><span class="text-primary-text">Pro</span>
             </a>
 
             <div class="hidden lg:flex items-center space-x-6">
                 <div class="flex space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
-                   
+                    
                     <!-- Homes Dropdown with improved hover area -->
-                    <div class="dropdown-container">
+                    <div class="dropdown-wrapper">
                         <button class="nav-link flex items-center text-primary-text">
-                            Homes 
+                            Homes
                             <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
@@ -305,7 +309,7 @@
                     <a href="contact.html" class="nav-link text-primary-text">Contact</a>
                     
                     <!-- Dashboard Dropdown with improved hover area -->
-                    <div class="dropdown-container">
+                    <div class="dropdown-wrapper">
                         <button class="nav-link flex items-center text-primary-text">
                             Dashboard
                             <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,15 +326,13 @@
                             </a>
                         </div>
                     </div>
-                </div>
 
+                </div>
                 <div class="w-px h-6 bg-border mx-3"></div>
                 
                 <div class="flex items-center space-x-4 rtl:space-x-reverse rtl:mr-4">
                     <button id="search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Search" title="Open Search">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
                     
                     <a href="auth.html" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="User Profile" title="User Profile">
@@ -340,45 +342,53 @@
                     </a>
                     
                     <button id="theme-toggle" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Toggle Theme" title="Toggle Theme">
-                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                        </svg>
+                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     </button>
                     
-                    <button id="lang-icon" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" title="Change Language" aria-label="Change Language">
+                    <button id="lang-icon" 
+                        class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
+                        title="Change Language"
+                        aria-label="Change Language"
+                    >
+                        <!-- Globe Icon -->
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
                         </svg>
                     </button>
                 </div>
             </div>
 
             <div class="flex items-center lg:hidden space-x-4 rtl:space-x-reverse rtl:ml-4">
+                <!-- Mobile Search -->
                 <button id="mobile-search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Search" title="Open Search">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </button>
-                
-<button 
-    id="mobile-theme-toggle"
-    aria-label="Toggle theme"
-    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-</button>
+
+                <!-- Mobile Theme Toggle -->
+                <button id="mobile-theme-toggle" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Toggle Theme" title="Toggle Theme">
+                    <!-- Sun Icon (Light Mode) -->
                     <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
+
+                    <!-- Moon Icon (Dark Mode) -->
                     <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
                 
+                <!-- Mobile Menu -->
                 <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Menu" title="Open Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
@@ -551,39 +561,37 @@
                 </button>
             </div>
 
+           
             <nav class="flex flex-col space-y-2 py-4">
                 <div>
-                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
-                        Homes 
-                        <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
+                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle" title="Toggle Homes Menu" aria-label="Toggle Homes Menu">
+                        Homes <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
                         <a href="index.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Home 1</a>
                         <a href="home2.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Home 2</a>
                     </div>
                 </div>
-                
-                <a href="Magazine.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Magazine</a>
+                   <a href="Magazine.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Magazine</a>
                 <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Trending</a>
-                <a href="pricing.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Pricing</a>
+                                <a href="pricing.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Pricing</a>
+
                 <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About Us</a>
                 <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Contact</a>
-                
                 <div>
-                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle">
-                        Dashboard
-                        <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="mobile-dashboard-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
-                        <a href="userdash.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">User Dashboard</a>
-                        <a href="dashboard.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Admin Dashboard</a>
-                    </div>
-                </div>
+  <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle" title="Toggle Dashboard Menu" aria-label="Toggle Dashboard Menu">
+      Dashboard
+      <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+  </button>
+  <div id="mobile-dashboard-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
+      <a href="userdash.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">User Dashboard</a>
+      <a href="dashboard.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Admin Dashboard</a>
+  </div>
+</div>
             </nav>
+
 
             <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
                 <a href="auth.html" class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200" title="Profile">
@@ -634,7 +642,7 @@
                         </a>
                         <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Instagram" title="Instagram">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864-4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07zm0 2.137c-3.141 0-3.535.013-4.793.07s-2.07.382-2.805 1.05c-.735.668-1.077 1.666-1.15 2.805-.057 1.258-.07 1.652-.07 4.793s.013 3.535.07 4.793c.073 1.139.415 2.137 1.15 2.805.735.668 1.666 1.077 2.805 1.15 1.258.057 1.652.07 4.793.07s3.535-.013 4.793-.07c1.139-.073 2.137-.415 2.805-1.15.668-.735 1.077-1.666 1.15-2.805-.073-1.139-.415-2.137-1.15-2.805-.668-.735-1.666-1.077-2.805-1.15-1.258-.057-1.652-.07-4.793-.07zm0 3.702a4.116 4.116 0 100 8.232 4.116 4.116 0 000-8.232zm0 2.137a1.98 1.98 0 110 3.96 1.98 1.98 0 010-3.96z"></path>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864 4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07zm0 2.137c-3.141 0-3.535.013-4.793.07s-2.07.382-2.805 1.05c-.735.668-1.077 1.666-1.15 2.805-.057 1.258-.07 1.652-.07 4.793s.013 3.535.07 4.793c.073 1.139.415 2.137 1.15 2.805.735.668 1.666 1.077 2.805 1.15 1.258.057 1.652.07 4.793.07s3.535-.013 4.793-.07c1.139-.073 2.137-.415 2.805-1.15.668-.735 1.077-1.666 1.15-2.805-.073-1.139-.415-2.137-1.15-2.805-.668-.735-1.666-1.077-2.805-1.15-1.258-.057-1.652-.07-4.793-.07zm0 3.702a4.116 4.116 0 100 8.232 4.116 4.116 0 000-8.232zm0 2.137a1.98 1.98 0 110 3.96 1.98 1.98 0 010-3.96z"></path>
                             </svg>
                         </a>
                     </div>
@@ -743,7 +751,7 @@
                 if (e.target === searchOverlay) toggleSearch(false);
             });
 
-            // --- 3. Mobile Menu Drawer ---
+            // --- 3. Mobile Menu Bottom Sheet Drawer ---
             const menuDrawer = document.getElementById('mobile-menu-drawer');
             const menuBackdrop = document.getElementById('drawer-backdrop');
             const menuContent = document.getElementById('drawer-content');
@@ -755,7 +763,7 @@
             const mobileDashboardToggle = document.getElementById('mobile-dashboard-toggle');
             const mobileDashboardMenu = document.getElementById('mobile-dashboard-menu');
             const dashboardIcon = document.getElementById('dashboard-icon');
-
+            
             const HIDDEN_CLASS = 'translate-y-[-100%]';
 
             const openDrawer = () => {
@@ -808,39 +816,36 @@
             const savedLang = localStorage.getItem('language') || 'en';
             document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
             
-const mobileLangButton = document.getElementById('mobile-lang-icon');
+            const mobileLangButton = document.getElementById('mobile-lang-icon');
 
-if (mobileLangButton) {
-    mobileLangButton.addEventListener('click', toggleLanguage);
-}
+            if (mobileLangButton) {
+                mobileLangButton.addEventListener('click', toggleLanguage);
+            }
 
-
-            // --- 5. IMPROVED DROPDOWN BEHAVIOR WITH 2CM BUFFER ---
-            const dropdownContainers = document.querySelectorAll('.dropdown-container');
+            // --- 5. IMPROVED DROPDOWN BEHAVIOR ---
+            const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
             
-            // Add JavaScript delay for even better behavior
+            // Add delay for hiding dropdowns
             let hideTimeout;
             
-            dropdownContainers.forEach(container => {
-                const dropdownMenu = container.querySelector('.dropdown-menu');
+            dropdownWrappers.forEach(wrapper => {
+                const dropdownMenu = wrapper.querySelector('.dropdown-menu');
                 
-                container.addEventListener('mouseenter', () => {
+                wrapper.addEventListener('mouseenter', () => {
                     clearTimeout(hideTimeout);
-                    // Immediately show dropdown
+                    // Show dropdown immediately
                     dropdownMenu.style.opacity = '1';
                     dropdownMenu.style.visibility = 'visible';
                     dropdownMenu.style.transform = 'translateY(0)';
-                    dropdownMenu.style.pointerEvents = 'auto';
                 });
                 
-                container.addEventListener('mouseleave', () => {
+                wrapper.addEventListener('mouseleave', () => {
                     // Delay hiding to give user time to move mouse to dropdown
                     hideTimeout = setTimeout(() => {
                         dropdownMenu.style.opacity = '0';
                         dropdownMenu.style.visibility = 'hidden';
                         dropdownMenu.style.transform = 'translateY(-10px)';
-                        dropdownMenu.style.pointerEvents = 'none';
-                    }, 500); // Increased to 500ms for better user experience
+                    }, 300); // 300ms delay before hiding
                 });
                 
                 // When mouse enters dropdown, clear any pending hide
@@ -854,23 +859,18 @@ if (mobileLangButton) {
                             dropdownMenu.style.opacity = '0';
                             dropdownMenu.style.visibility = 'hidden';
                             dropdownMenu.style.transform = 'translateY(-10px)';
-                            dropdownMenu.style.pointerEvents = 'none';
-                        }, 300);
+                        }, 200);
                     });
                 }
             });
             
             // --- 6. Close dropdowns when clicking outside ---
             document.addEventListener('click', (e) => {
-                if (!e.target.closest('.dropdown-container')) {
-                    dropdownContainers.forEach(container => {
-                        const dropdownMenu = container.querySelector('.dropdown-menu');
-                        if (dropdownMenu) {
-                            dropdownMenu.style.opacity = '0';
-                            dropdownMenu.style.visibility = 'hidden';
-                            dropdownMenu.style.transform = 'translateY(-10px)';
-                            dropdownMenu.style.pointerEvents = 'none';
-                        }
+                if (!e.target.closest('.dropdown-wrapper')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(-10px)';
                     });
                 }
             });
