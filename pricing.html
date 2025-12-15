@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growwpark MagazinePro</title>
+    <link rel="icon" href="/assets/growwpark_logo.jpg" type="image/jpeg">
+<title>Growwpark MagazinePro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- CSS Variables for Dynamic Colors --- */
@@ -44,22 +45,26 @@
         .bg-hover { background-color: var(--color-hover); }
         .border-border { border-color: var(--color-border); }
         .text-gold { color: var(--color-accent); }
+/* Footer Specific Overrides – FIXED CONTRAST */
+#main-footer {
+    background-color: var(--color-footer-bg);
+    color: var(--color-footer-text);
+}
 
-        /* Footer Specific Overrides */
-        #main-footer {
-            background-color: var(--color-footer-bg);
-            color: var(--color-footer-text);
-        }
-        #main-footer .footer-heading {
-            color: var(--color-footer-text);
-        }
-        #main-footer .footer-link {
-            color: var(--color-secondary-text);
-            transition: color 0.2s;
-        }
-        #main-footer .footer-link:hover {
-            color: var(--color-accent);
-        }
+#main-footer .footer-heading {
+    color: #FFFFFF; /* clearer headings */
+}
+
+#main-footer .footer-link {
+    color: #D1D5DB; /* high contrast on dark footer */
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+
+#main-footer .footer-link:hover {
+    color: var(--color-accent);
+}
+
 
         /* Nav Link Underline Animation (Custom CSS for premium effect) */
         .nav-link {
@@ -252,7 +257,7 @@
     <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-16">
 
-            <a href="#" class="text-3xl font-serif font-extrabold tracking-wide">
+            <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide">
                 <span class="text-gold">Magazine</span><span class="text-primary-text">Pro</span>
             </a>
 
@@ -495,8 +500,8 @@
                         </li>
                     </ul>
                     
-                    <button class="w-full py-3 bg-accent text-white font-semibold rounded-lg hover:opacity-90 transition duration-300" aria-label="Get Premium Access">
-                        Get Premium Access
+                   <button class="w-full py-3 border-2 border-border text-primary-text font-semibold rounded-lg hover:bg-hover transition duration-300" aria-label="Contact Sales for Enterprise plan">
+                        Get premium Access
                     </button>
                 </div>
                 
@@ -693,14 +698,14 @@
                 Join thousands of readers who trust MagazinePro for premium content and exclusive insights.
             </p>
            
-             <button 
-                        class="bg-black text-white font-semibold py-3 px-10 rounded-lg 
-                        hover:bg-gray-200 hover:text-black border border-black 
-                        transition duration-300 shadow-lg"
-                        aria-label="Subscribe to MagazinePro"
-                    >
-                            Start Your Free 7-Day Trial
-                    </button>
+            <button 
+    class="bg-[#C79A5B] text-white font-semibold py-3 px-10 rounded-lg 
+           hover:bg-[#B8894A] transition duration-300 shadow-lg border border-[#B8894A]"
+    aria-label="Subscribe to MagazinePro"
+>
+    Start Your Free 7-Day Trial
+</button>
+
             <p class="text-sm text-secondary-text mt-4">No credit card required for trial period</p>
         </section>
     </main>
@@ -811,7 +816,11 @@
                 </div>
 
                 <div class="col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4">Categories</h4>
+                    <h4 class="footer-heading font-semibold text-lg mb-4 text-[#C19A6B]">
+  Categories
+</h4>
+
+
                     <ul class="space-y-2">
                         <li><a href="#" class="footer-link">Technology</a></li>
                         <li><a href="#" class="footer-link">Fashion & Style</a></li>

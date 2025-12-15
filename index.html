@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growwpark MagazinePro</title>
+    <link rel="icon" href="/assets/growwpark_logo.jpg" type="image/jpeg">
+<link rel="icon" href="/assets/growwpark_logo.jpg" type="image/jpeg">
+<title>Growwpark MagazinePro</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- CSS Variables for Dynamic Colors --- */
@@ -33,6 +36,7 @@
             color: var(--color-primary-text);
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
             transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
         /* Utility Class Aliases */
@@ -45,20 +49,36 @@
         .text-gold { color: var(--color-accent); }
 
         /* Footer Specific Overrides */
-        #main-footer {
-            background-color: var(--color-footer-bg);
-            color: var(--color-footer-text);
-        }
-        #main-footer .footer-heading {
-            color: var(--color-footer-text);
-        }
-        #main-footer .footer-link {
-            color: var(--color-secondary-text);
-            transition: color 0.2s;
-        }
-        #main-footer .footer-link:hover {
-            color: var(--color-accent);
-        }
+#main-footer {
+    background-color: var(--color-footer-bg);
+    color: var(--color-footer-text);
+}
+
+/* Footer headings */
+#main-footer .footer-heading {
+    color: #ffffff; /* Strong contrast */
+}
+
+/* Footer links – FIXED */
+#main-footer .footer-link {
+    color: #D1D5DB; /* Light gray (Tailwind gray-300) */
+    font-weight: 500;
+    transition: color 0.25s ease, padding-left 0.25s ease;
+}
+
+#main-footer .footer-link:hover {
+    color: var(--color-accent); /* Gold on hover */
+    padding-left: 4px; /* Subtle premium interaction */
+}
+
+/* Footer paragraph text */
+#main-footer p {
+    color: #9CA3AF; /* gray-400 for readability */
+}
+
+.section-heading {
+    text-align: center;
+}
 
         /* Nav Link Underline Animation */
         .nav-link {
@@ -197,25 +217,106 @@
             background-color: var(--color-hover);
         }
         
-        /* Scrollable Lifestyle Billboard (Section 3) */
-        .lifestyle-scroll-card {
-            flex-shrink: 0;
-            width: 18rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            transition-duration: 300ms;
-            transition-property: box-shadow, transform, background-color;
+        /* Lifestyle Slider Styles */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
-        @media (min-width: 768px) {
-            .lifestyle-scroll-card {
-                width: 20rem;
-            }
+        
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 1.5rem;
         }
-        .lifestyle-scroll-card:hover {
+        
+       .lifestyle-slide {
+    flex: 0 0 calc(33.333% - 1rem); /* ALWAYS 3 cards */
+    min-width: 0;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition-duration: 300ms;
+    transition-property: box-shadow, transform, background-color;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem;
+}
+
+        
+       
+        
+        .lifestyle-slide:hover {
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: scale(1.03);
+            transform: translateY(-4px);
             background-color: var(--color-hover);
+            border-color: var(--color-accent);
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            color: var(--color-primary-text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider-btn:hover {
+            background-color: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .slider-btn.prev {
+            left: 10px;
+        }
+        
+        .slider-btn.next {
+            right: 10px;
+        }
+        
+        .slider-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(1);
+        }
+        
+        .slider-btn:disabled:hover {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            border-color: var(--color-border);
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--color-accent);
+            transform: scale(1.2);
         }
 
         /* Small Grid Cards (Section 5) */
@@ -232,8 +333,6 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
             border-color: var(--color-accent);
         }
-
-       
         
         /* Scrollbar styling */
         .scrollbar-thin::-webkit-scrollbar {
@@ -247,6 +346,51 @@
             background: var(--color-accent);
             border-radius: 3px;
         }
+        
+/* Tablet */
+@media (max-width: 1024px) {
+    .lifestyle-slide {
+        flex: 0 0 calc(50% - 1rem); /* 2 cards */
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .lifestyle-slide {
+        flex: 0 0 100%; /* 1 card */
+    }
+}
+@media (max-width: 640px) {
+    .slider-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .slider-btn.prev {
+        left: 4px;
+    }
+
+    .slider-btn.next {
+        right: 4px;
+    }
+}
+/* ===== MOBILE SLIDER FIX ===== */
+@media (max-width: 640px) {
+    .slider-container {
+        padding: 0 0.5rem; /* breathing space */
+    }
+
+    .slider-track {
+        gap: 0; /* REMOVE gap on mobile */
+    }
+
+    .lifestyle-slide {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0.75rem;
+        margin: 0 auto;
+    }
+}
         
         /* Mobile dropdown adjustments */
         @media (max-width: 1024px) {
@@ -288,7 +432,7 @@
     <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-16">
 
-            <a href="#" class="text-3xl font-serif font-extrabold tracking-wide">   
+            <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide">   
                 <span class="text-gold">Magazine</span><span class="text-primary-text">Pro</span>
             </a>
 
@@ -402,77 +546,128 @@
     </header>
     
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <section class="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-20">
-            <div class="lg:col-span-3">
-                <h2 class="section-heading mb-6 border-b border-border pb-2">
-                    Editor's Pick <span class="text-accent text-sm ml-2">FEATURE</span>
-                </h2>
-                <article class="bg-background rounded-xl overflow-hidden shadow-2xl transition-shadow duration-300 hover:shadow-3xl border border-border">
-                    <div class="relative">
-                        <img src="assets/hero.jpg" alt="Featured Article Banner: Generative AI in Creative Industries" class="w-full h-72 sm:h-96 object-cover">
-                        <span class="absolute top-6 left-6 bg-accent text-white text-sm font-semibold px-4 py-2 rounded-full uppercase shadow-lg"></span>
-                    </div>
-                    <div class="p-6 md:p-10">
-                        <h3 class="text-3xl md:text-5xl font-serif font-bold text-primary-text hover:text-accent transition duration-200 cursor-pointer mb-5 leading-tight">
-                            The Future is Now: How Generative AI is Rewriting Creative Industries.
-                        </h3>
-                        <p class="text-lg text-secondary-text mb-6 leading-relaxed">
-                            A deep dive into how large language models are evolving and what it means for the future of creative work and human-computer interaction.
-                        </p>
-                        <div class="flex items-center justify-between text-sm text-secondary-text border-t border-border pt-4">
-                            <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                                <span class="font-medium">By **Jane Doe**</span>
-                                <span class="text-accent">•</span>
-                                <span>15 min read</span>
-                            </div>
-                            <button class="icon-btn text-primary-text hover:text-accent p-1" aria-label="Bookmark Article" title="Bookmark Article">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"></path></svg>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-            </div>
+        <section class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-10 mb-20">
 
-            <div class="lg:col-span-1">
-                <h2 class="section-heading mb-6 border-b border-accent pb-2 text-accent">
-                    🔥 Trending Now
-                </h2>
-                <div class="space-y-6">
-                    <article class="trending-card">
-                        <div>
-                            <a href="#" class="text-lg font-semibold text-primary-text group-hover:text-accent leading-snug transition duration-200">
-                                The Great Remote Work Debate: Is Productivity Real?
-                            </a>
-                            <p class="text-xs text-secondary-text mt-1">**Business** • 7 min read</p>
-                        </div>
-                    </article>
-                    <article class="trending-card">
-                        <div>
-                            <a href="#" class="text-lg font-semibold text-primary-text group-hover:text-accent leading-snug transition duration-200">
-                                Hidden Gems of the Mediterranean Coast
-                            </a>
-                            <p class="text-xs text-secondary-text mt-1">**Travel** • 12 min read</p>
-                        </div>
-                    </article>
-                    <article class="trending-card">
-                        <div>
-                            <a href="#" class="text-lg font-semibold text-primary-text group-hover:text-accent leading-snug transition duration-200">
-                                Decoding the Latest Fashion Week Trends
-                            </a>
-                            <p class="text-xs text-secondary-text mt-1">**Lifestyle** • 9 min read</p>
-                        </div>
-                    </article>
-                    <article class="trending-card">
-                        <div>
-                            <a href="#" class="text-lg font-semibold text-primary-text group-hover:text-accent leading-snug transition duration-200">
-                                Five Habits of Highly Successful Investors
-                            </a>
-                            <p class="text-xs text-secondary-text mt-1">**Finance** • 5 min read</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+    <!-- ================= LEFT : EDITOR'S PICK ================= -->
+    <div class="lg:col-span-3">
+        <h2 class="section-heading mb-6 border-b border-border pb-2 text-2xl font-serif font-bold flex items-center justify-between">
+    <span>Editor's Pick</span>
+    <span class="text-accent text-sm uppercase text-right">Feature</span>
+</h2>
+
+
+
+       <article
+  class="w-full md:max-w-[90%] lg:max-w-full mx-auto
+         bg-background rounded-xl overflow-hidden
+         shadow-lg transition-shadow duration-300 hover:shadow-xl
+         border border-border"
+>
+  <!-- Image -->
+  <div class="relative w-full overflow-hidden">
+    <img 
+      src="assets/hero.jpg"
+      alt="Featured Article Banner: Generative AI in Creative Industries"
+      class="w-full 
+             h-44 sm:h-52 md:h-48 lg:h-64
+             object-cover"
+    >
+    <span class="absolute top-3 left-3 bg-accent text-white
+                 text-xs font-semibold px-3 py-1 rounded-full uppercase shadow">
+      AI
+    </span>
+  </div>
+
+  <!-- Content -->
+  <div class="p-4 sm:p-6 md:p-5 lg:p-8">
+    <h3
+      class="text-lg sm:text-xl md:text-lg lg:text-2xl
+             font-serif font-bold text-primary-text
+             hover:text-accent transition duration-200
+             cursor-pointer mb-3 leading-snug"
+    >
+      The Future is Now: How Generative AI is Rewriting Creative Industries
+    </h3>
+
+    <p
+      class="text-sm sm:text-base md:text-sm lg:text-base
+             text-secondary-text mb-4 leading-relaxed"
+    >
+      A deep dive into how large language models are evolving and what it
+      means for the future of creative work and human-computer interaction.
+    </p>
+
+    <!-- Meta -->
+    <div
+      class="flex items-center justify-between
+             text-xs text-secondary-text
+             border-t border-border pt-3"
+    >
+      <div class="flex items-center gap-2">
+        <span class="font-medium">By Jane Doe</span>
+        <span class="text-accent">•</span>
+        <span>15 min read</span>
+      </div>
+
+      <button
+        class="icon-btn text-primary-text hover:text-accent p-1"
+        aria-label="Bookmark Article"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</article>
+
+    </div>
+
+    <!-- ================= RIGHT : TRENDING NOW ================= -->
+    <aside class="lg:col-span-1 mt-6 lg:mt-12">
+        <h2 class="section-heading mb-6 border-b border-accent pb-2 text-xl font-serif font-bold text-accent">
+            🔥 Trending Now
+        </h2>
+
+        <div class="space-y-6">
+            <!-- Item -->
+            <article class="border-b border-border pb-4">
+                <a href="#" class="block text-base font-semibold text-primary-text hover:text-accent transition">
+                    The Great Remote Work Debate: Is Productivity Real?
+                </a>
+                <p class="text-xs text-secondary-text mt-1">Business • 7 min read</p>
+            </article>
+
+            <article class="border-b border-border pb-4">
+                <a href="#" class="block text-base font-semibold text-primary-text hover:text-accent transition">
+                    Hidden Gems of the Mediterranean Coast
+                </a>
+                <p class="text-xs text-secondary-text mt-1">Travel • 12 min read</p>
+            </article>
+
+            <article class="border-b border-border pb-4">
+                <a href="#" class="block text-base font-semibold text-primary-text hover:text-accent transition">
+                    Decoding the Latest Fashion Week Trends
+                </a>
+                <p class="text-xs text-secondary-text mt-1">Lifestyle • 9 min read</p>
+            </article>
+
+            <article>
+                <a href="#" class="block text-base font-semibold text-primary-text hover:text-accent transition">
+                    Five Habits of Highly Successful Investors
+                </a>
+                <p class="text-xs text-secondary-text mt-1">Finance • 5 min read</p>
+            </article>
+        </div>
+    </aside>
+
+</section>
+
 
         <hr class="border-border my-10">
 
@@ -513,36 +708,77 @@
 
         <hr class="border-border my-10">
 
+        <!-- Lifestyle Slider Section -->
         <section class="mb-20">
             <h2 class="section-heading mb-8">
                 <span class="text-accent text-4xl mr-2">|</span> Lifestyle & Culture
             </h2>
-            <div class="flex space-x-6 overflow-x-auto whitespace-nowrap pb-4 scrollbar-thin scrollbar-thumb-accent scrollbar-track-border">
-                <article class="lifestyle-scroll-card">
-                    <img src="assets/culture1.jpg" alt="Minimalist living photo" class="w-full h-64 object-cover rounded-xl shadow-lg mb-3">
-                    <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 whitespace-normal">The Joy of Less: Mastering Minimalist Living</h4>
-                    <p class="text-sm text-secondary-text mt-1">8 min read</p>
-                </article>
-                <article class="lifestyle-scroll-card">
-                    <img src="assets/culture 2.jpg" alt="Global Cuisine photo" class="w-full h-64 object-cover rounded-xl shadow-lg mb-3">
-                    <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 whitespace-normal">A Taste of Tradition: Global Food Trends</h4>
-                    <p class="text-sm text-secondary-text mt-1">10 min read</p>
-                </article>
-                <article class="lifestyle-scroll-card">
-                    <img src="assets/culture 3.jpg" alt="Architecture photo" class="w-full h-64 object-cover rounded-xl shadow-lg mb-3">
-                    <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 whitespace-normal">Post-Modern Architecture's Quiet Comeback</h4>
-                    <p class="text-sm text-secondary-text mt-1">12 min read</p>
-                </article>
-                <article class="lifestyle-scroll-card">
-                    <img src="assets/culture 4.jpg" alt="Fashion photo" class="w-full h-64 object-cover rounded-xl shadow-lg mb-3">
-                    <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 whitespace-normal">Sustainable Fashion: Style Without Waste</h4>
-                    <p class="text-sm text-secondary-text mt-1">9 min read</p>
-                </article>
-                <article class="lifestyle-scroll-card">
-                    <img src="assets/culture 5.webp" alt="Fitness photo" class="w-full h-64 object-cover rounded-xl shadow-lg mb-3">
-                    <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 whitespace-normal">The New Era of Biohacking and Longevity</h4>
-                    <p class="text-sm text-secondary-text mt-1">14 min read</p>
-                </article>
+            
+            <div class="slider-container">
+                <!-- Previous Button -->
+                <button class="slider-btn prev" id="lifestyle-prev" aria-label="Previous slide">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                
+                <!-- Slider Track -->
+                <div class="slider-track" id="lifestyle-track">
+                    <!-- Slide 1 -->
+                    <article class="lifestyle-slide">
+                        <img src="assets/culture1.jpg" alt="Minimalist living photo" class="w-full h-64 object-cover rounded-lg mb-3">
+                        <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 mb-2">
+                            The Joy of Less: Mastering Minimalist Living
+                        </h4>
+                        <p class="text-sm text-secondary-text">8 min read</p>
+                    </article>
+                    
+                    <!-- Slide 2 -->
+                    <article class="lifestyle-slide">
+                        <img src="assets/culture 2.jpg" alt="Global Cuisine photo" class="w-full h-64 object-cover rounded-lg mb-3">
+                        <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 mb-2">
+                            A Taste of Tradition: Global Food Trends
+                        </h4>
+                        <p class="text-sm text-secondary-text">10 min read</p>
+                    </article>
+                    
+                    <!-- Slide 3 -->
+                    <article class="lifestyle-slide">
+                        <img src="assets/culture 3.jpg" alt="Architecture photo" class="w-full h-64 object-cover rounded-lg mb-3">
+                        <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 mb-2">
+                            Post-Modern Architecture's Quiet Comeback
+                        </h4>
+                        <p class="text-sm text-secondary-text">12 min read</p>
+                    </article>
+                    
+                    <!-- Slide 4 -->
+                    <article class="lifestyle-slide">
+                        <img src="assets/culture 4.jpg" alt="Fashion photo" class="w-full h-64 object-cover rounded-lg mb-3">
+                        <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 mb-2">
+                            Sustainable Fashion: Style Without Waste
+                        </h4>
+                        <p class="text-sm text-secondary-text">9 min read</p>
+                    </article>
+                    
+                    <!-- Slide 5 -->
+                    <article class="lifestyle-slide">
+                        <img src="assets/culture 5.webp" alt="Fitness photo" class="w-full h-64 object-cover rounded-lg mb-3">
+                        <h4 class="text-xl font-semibold text-primary-text hover:text-accent transition duration-200 mb-2">
+                            The New Era of Biohacking and Longevity
+                        </h4>
+                        <p class="text-sm text-secondary-text">14 min read</p>
+                    </article>
+                </div>
+                
+                <!-- Next Button -->
+                <button class="slider-btn next" id="lifestyle-next" aria-label="Next slide">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                
+                <!-- Dots Navigation -->
+                <div class="slider-dots" id="lifestyle-dots"></div>
             </div>
         </section>
 
@@ -764,7 +1000,12 @@
                 </div>
 
                 <div class="col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4">Categories</h4>
+                    <h4 class="footer-heading font-semibold text-lg mb-4 text-gold">
+  Categories
+</h4>
+
+
+
                     <ul class="space-y-2">
                         <li><a href="#" class="footer-link">Technology</a></li>
                         <li><a href="#" class="footer-link">Fashion & Style</a></li>
@@ -933,11 +1174,11 @@
 
             const savedLang = localStorage.getItem('language') || 'en';
             document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
-const mobileLangButton = document.getElementById('mobile-lang-icon');
+            const mobileLangButton = document.getElementById('mobile-lang-icon');
 
-if (mobileLangButton) {
-    mobileLangButton.addEventListener('click', toggleLanguage);
-}
+            if (mobileLangButton) {
+                mobileLangButton.addEventListener('click', toggleLanguage);
+            }
 
             // --- 5. IMPROVED DROPDOWN BEHAVIOR ---
             const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
@@ -991,6 +1232,165 @@ if (mobileLangButton) {
                     });
                 }
             });
+
+            // --- 7. FIXED Lifestyle Slider Functionality ---
+            const lifestyleSlider = {
+                track: document.getElementById('lifestyle-track'),
+                slides: document.querySelectorAll('.lifestyle-slide'),
+                prevBtn: document.getElementById('lifestyle-prev'),
+                nextBtn: document.getElementById('lifestyle-next'),
+                dotsContainer: document.getElementById('lifestyle-dots'),
+                currentIndex: 0,
+                slidesPerView: 1,
+                
+                init() {
+                    if (!this.track || !this.slides.length) {
+                        console.error('Slider elements not found');
+                        return;
+                    }
+                    
+                    this.updateSlidesPerView();
+                    this.createDots();
+                    this.updateSlider();
+                    this.attachEventListeners();
+                    window.addEventListener('resize', () => this.updateSlidesPerView());
+                },
+                
+                updateSlidesPerView() {
+                    if (window.innerWidth >= 1024) {
+                        this.slidesPerView = 4;
+                    } else if (window.innerWidth >= 768) {
+                        this.slidesPerView = 3;
+                    } else if (window.innerWidth >= 640) {
+                        this.slidesPerView = 2;
+                    } else {
+                        this.slidesPerView = 1;
+                    }
+                    
+                    const maxIndex = Math.max(0, this.slides.length - this.slidesPerView);
+                    if (this.currentIndex > maxIndex) {
+                        this.currentIndex = maxIndex;
+                    }
+                    
+                    this.updateSlider();
+                    this.updateDots();
+                },
+                
+                createDots() {
+                    if (!this.dotsContainer) return;
+                    
+                    this.dotsContainer.innerHTML = '';
+                    const totalSlides = Math.ceil(this.slides.length / this.slidesPerView);
+                    
+                    for (let i = 0; i < totalSlides; i++) {
+                        const dot = document.createElement('div');
+                        dot.className = 'slider-dot';
+                        dot.dataset.index = i;
+                        dot.addEventListener('click', () => this.goToSlide(i * this.slidesPerView));
+                        this.dotsContainer.appendChild(dot);
+                    }
+                    
+                    this.updateDots();
+                },
+                
+                updateDots() {
+                    if (!this.dotsContainer) return;
+                    
+                    const dots = this.dotsContainer.querySelectorAll('.slider-dot');
+                    const activeDotIndex = Math.floor(this.currentIndex / this.slidesPerView);
+                    
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === activeDotIndex);
+                    });
+                },
+                
+                updateSlider() {
+                    const slideWidth = 100 / this.slidesPerView;
+                    const translateX = -this.currentIndex * slideWidth;
+                    this.track.style.transform = `translateX(${translateX}%)`;
+                    
+                    // Update button states
+                    if (this.prevBtn) {
+                        this.prevBtn.disabled = this.currentIndex === 0;
+                        this.prevBtn.style.opacity = this.currentIndex === 0 ? '0.5' : '1';
+                    }
+                    
+                    if (this.nextBtn) {
+                        const maxIndex = Math.max(0, this.slides.length - this.slidesPerView);
+                        this.nextBtn.disabled = this.currentIndex >= maxIndex;
+                        this.nextBtn.style.opacity = this.currentIndex >= maxIndex ? '0.5' : '1';
+                    }
+                    
+                    this.updateDots();
+                },
+                
+                goToSlide(index) {
+                    const maxIndex = Math.max(0, this.slides.length - this.slidesPerView);
+                    this.currentIndex = Math.max(0, Math.min(index, maxIndex));
+                    this.updateSlider();
+                },
+                
+                nextSlide() {
+                    const maxIndex = Math.max(0, this.slides.length - this.slidesPerView);
+                    if (this.currentIndex < maxIndex) {
+                        this.currentIndex++;
+                        this.updateSlider();
+                    }
+                },
+                
+                prevSlide() {
+                    if (this.currentIndex > 0) {
+                        this.currentIndex--;
+                        this.updateSlider();
+                    }
+                },
+                
+                attachEventListeners() {
+                    if (this.prevBtn) {
+                        this.prevBtn.addEventListener('click', () => this.prevSlide());
+                    }
+                    
+                    if (this.nextBtn) {
+                        this.nextBtn.addEventListener('click', () => this.nextSlide());
+                    }
+                    
+                    // Optional: Add touch/swipe support
+                    let startX = 0;
+                    let currentX = 0;
+                    let isDragging = false;
+                    
+                    this.track.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        currentX = startX;
+                        isDragging = true;
+                    });
+                    
+                    this.track.addEventListener('touchmove', (e) => {
+                        if (!isDragging) return;
+                        currentX = e.touches[0].clientX;
+                        e.preventDefault();
+                    });
+                    
+                    this.track.addEventListener('touchend', () => {
+                        if (!isDragging) return;
+                        isDragging = false;
+                        
+                        const diff = startX - currentX;
+                        const threshold = 50;
+                        
+                        if (Math.abs(diff) > threshold) {
+                            if (diff > 0) {
+                                this.nextSlide();
+                            } else {
+                                this.prevSlide();
+                            }
+                        }
+                    });
+                }
+            };
+            
+            // Initialize the slider
+            lifestyleSlider.init();
         });
     </script>
 </body>
