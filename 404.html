@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/assets/growwpark_logo.jpg" type="image/jpeg">
-<title>Growwpark MagazinePro</title>
+    <title>404 - MagazinePro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- CSS Variables for Dynamic Colors --- */
@@ -15,8 +14,6 @@
             --color-accent: #C19A6B;
             --color-border: #E5E7EB;
             --color-hover: #F3F4F6;
-            --color-footer-bg: #1A1A1A;
-            --color-footer-text: #EAEAEA;
         }
         html[data-theme='dark'] {
             --color-background: #0F0F0F;
@@ -25,8 +22,6 @@
             --color-accent: #C19A6B;
             --color-border: #2A2A2A;
             --color-hover: #1A1A1A;
-            --color-footer-bg: #000000;
-            --color-footer-text: #EAEAEA;
         }
 
         /* Apply Variables and Base Font */
@@ -45,44 +40,6 @@
         .bg-hover { background-color: var(--color-hover); }
         .border-border { border-color: var(--color-border); }
         .text-gold { color: var(--color-accent); }
-
-        /* Footer Specific Overrides */
-        #main-footer {
-            background-color: var(--color-footer-bg);
-            color: var(--color-footer-text);
-        }
-        #main-footer .footer-heading {
-            color: var(--color-footer-text);
-        }
-        #main-footer .footer-link {
-            color: var(--color-secondary-text);
-            transition: color 0.2s;
-        }
-        #main-footer .footer-link:hover {
-            color: var(--color-accent);
-        }
-
-        /* Nav Link Underline Animation */
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 2px;
-            background-color: var(--color-accent);
-            transform: scaleX(0);
-            transition: transform 1s;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            transform: scaleX(1);
-        }
 
         /* 404 Page Specific Styles */
         .magazine-clipping {
@@ -228,164 +185,104 @@
             0% { top: 0; }
             100% { top: 100%; }
         }
+        
+        /* Control Bar Styles */
+        .control-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: var(--color-background);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+        
+        .control-bar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .control-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--color-hover);
+            transition: all 0.2s ease;
+        }
+        
+        .control-btn:hover {
+            background-color: var(--color-accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .control-bar {
+                padding: 0.5rem;
+            }
+            .control-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
-
-    <!-- Header (Same as original) -->
-    <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-16">
-
-            <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide">
-                <span class="text-gold">Magazine</span><span class="text-primary-text">Pro</span>
-            </a>
-
-            <div class="hidden lg:flex items-center space-x-6">
-                <div class="flex space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
-                    
-                    <div class="relative group">
-                        <button class="nav-link flex items-center text-primary-text">
-                            Homes <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" 
- fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        
-                        <div class="absolute hidden group-hover:block 
-                            bg-background border border-border mt-1 rounded-lg shadow-xl min-w-[150px] z-60 overflow-hidden 
-                            transition-all duration-150 delay-150"> 
-                            
-                            <a href="index.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">Home 1</a>
-                            <a href="home2.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">Home 2</a>
-                        </div>
-                    </div>
-                    
-                    <a href="Magazine.html" class="nav-link">Magazine</a>
-                    <a href="blog.html" class="nav-link">Trending</a>
-                    <a href="pricing.html" class="nav-link">Pricing</a>
-                    <a href="about.html" class="nav-link">About Us</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="relative group">
-  <button class="nav-link flex items-center text-primary-text">
-      Dashboard
-      <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" 
- fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-  </button>
-
-  <div class="absolute hidden group-hover:block
-      bg-background border border-border mt-1 rounded-lg shadow-xl min-w-[170px] z-60 overflow-hidden
-      transition-all duration-150 delay-150">
-
-      <a href="userdash.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">
-          User Dashboard
-      </a>
-      <a href="dashboard.html" class="block px-4 py-2 hover:bg-hover text-sm text-primary-text transition duration-150">
-          Admin Dashboard
-      </a>
-  </div>
-</div>
-
-                </div>
-                <div class="w-px h-6 bg-border mx-3"></div>
+    
+    <!-- Control Bar with Home, Theme Toggle, and RTL -->
+    <div class="control-bar" id="control-bar">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Home Button -->
+                <a href="index.html" class="control-btn" title="Back to Home" aria-label="Back to Home">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                </a>
                 
-                <div class="flex items-center space-x-4 rtl:space-x-reverse rtl:mr-4">
-                    <button id="search-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Open Search" title="Open Search">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <!-- Title -->
+                <div class="text-center">
+                    <h1 class="text-xl font-serif font-bold text-accent">MagazinePro</h1>
+                    <p class="text-xs text-secondary-text">404 Error Page</p>
+                </div>
+                
+                <!-- Theme Toggle and RTL Buttons -->
+                <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="control-btn" aria-label="Toggle Theme" title="Toggle Theme">
+                        <svg class="w-5 h-5 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg class="w-5 h-5 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
                     </button>
                     
-                    <a href="auth.html" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="User Profile" title="User Profile">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    <!-- RTL/Language Toggle -->
+                    <button id="lang-toggle" class="control-btn" aria-label="Toggle Language Direction" title="Toggle RTL/LTR">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
                         </svg>
-                    </a>
-                    <button id="theme-toggle" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Toggle Theme" title="Toggle Theme">
-                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     </button>
-                    <button id="lang-icon" 
-    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
-    title="Change Language"
-    aria-label="Change Language"
->
-    <!-- Globe Icon -->
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
-    </svg>
-</button>
-
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="flex items-center lg:hidden space-x-4 rtl:space-x-reverse rtl:ml-4">
-
-    <!-- Mobile Search -->
-   <button 
-    id="mobile-search-open" 
-    class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
-    aria-label="Open Search"
-    title="Open Search"
->
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>
-</button>
-
-
-    <!-- 🌐 Global Language Toggle -->
-    <!-- <button id="lang-icon" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
-        </svg>
-    </button> -->
-    <button 
-    id="mobile-theme-toggle" 
-    class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
-    aria-label="Toggle Theme"
-    title="Toggle Theme"
->
-    <!-- Sun Icon (Light Mode) -->
-    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-    </svg>
-
-    <!-- Moon Icon (Dark Mode) -->
-    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-    </svg>
-</button>
-
-    <!-- Mobile Menu -->
-    <button 
-    id="mobile-menu-open" 
-    class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200"
-    aria-label="Open Menu"
-    title="Open Menu"
->
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-</button>
-
-</div>
-
-        </nav>
-    </header>
-    
     <!-- Main Content - 404 Page -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-[70vh]">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen pt-20">
         <div class="relative overflow-hidden">
             <!-- Background elements -->
             <div class="search-beam"></div>
             <div class="error-number left-1/2 transform -translate-x-1/2 top-10">404</div>
             
             <!-- Main 404 content -->
-            <div class="relative z-10 pt-20 pb-16">
+            <div class="relative z-10 pt-10 pb-16">
                 <div class="max-w-6xl mx-auto">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <!-- Left column - Visual elements -->
@@ -503,16 +400,6 @@
                                         Search MagazinePro
                                     </button>
                                 </div>
-                                
-                                <div class="text-center">
-                                    <p class="text-secondary-text mb-4">Or contact our editorial team for assistance:</p>
-                                    <a href="contact.html" class="inline-flex items-center text-accent font-semibold hover:underline">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </svg>
-                                        Contact Editorial Team
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -554,7 +441,7 @@
                                 <p class="text-sm text-secondary-text mt-2">10 min read</p>
                             </a>
                             
-                            <a href="Magazine.html" class="bg-background border border-border rounded-xl p-5 hover:border-accent transition duration-300 group">
+                            <a href="#" class="bg-background border border-border rounded-xl p-5 hover:border-accent transition duration-300 group">
                                 <div class="w-full h-40 bg-accent bg-opacity-10 rounded-lg mb-4 flex items-center justify-center">
                                     <svg class="w-12 h-12 text-accent opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
@@ -570,166 +457,13 @@
         </div>
     </main>
 
-    <!-- Search Overlay (Same as original) -->
-    <div id="search-overlay" class="fixed inset-0 z-[100] bg-background bg-opacity-95 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="container mx-auto px-4 py-16">
-            <button id="search-close" 
-                class="absolute top-4 right-4 text-primary-text hover:text-accent p-2" 
-                aria-label="Close Search" 
-                title="Close Search"> <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <h2 class="text-3xl font-serif mb-8 text-primary-text">What are you looking for?</h2>
-            <input type="text" placeholder="Start typing..." class="w-full text-4xl p-4 bg-transparent border-b-2 border-border focus:outline-none focus:border-accent text-primary-text" autofocus>
-            <div class="mt-8 text-secondary-text">Popular searches: **Technology**, **Style**, **Policy**</div>
-        </div>
-    </div>
-
-    <!-- Mobile Menu Drawer (Same as original) -->
-    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
-        <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-
-        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 lg:hidden max-h-[80vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
-            
-            <div class="flex justify-between items-center pb-4 border-b border-border">
-                <h3 class="text-xl font-serif font-bold text-accent">Menu</h3>
-                <button id="mobile-menu-close" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200" aria-label="Close Menu" title="Close Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-                
-            </div>
-
-            <nav class="flex flex-col space-y-2 py-4">
-                <div>
-                    <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
-                        Homes <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
-                        <a href="index.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Home 1</a>
-                        <a href="home2.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Home 2</a>
-                    </div>
-                </div>
-                <a href="Magazine.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Magazine</a>
-                <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Trending</a>
-                <a href="pricing.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Pricing</a>
-                <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About</a>
-                <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Contact</a>
-                <div>
-  <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle">
-      Dashboard
-      <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-  </button>
-  <div id="mobile-dashboard-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
-      <a href="userdash.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">User Dashboard</a>
-      <a href="dashboard.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Admin Dashboard</a>
-  </div>
-</div>
-
-            </nav>
-
-            <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
-                <a href="auth.html" class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200" title="Profile">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                    <span class="text-xs mt-1 text-secondary-text">Profile</span>
-                </a>
-               <button id="mobile-lang-icon"
-        class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200"
-        title="Change Language"
-        aria-label="Change Language"
-    >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.8 2.5 12.2 0 15m0-15c-2.5 2.8-2.5 12.2 0 15M3 12h18" />
-        </svg>
-        <span class="text-xs mt-1 text-secondary-text">RTL</span>
-    </button>
-                  <button class="icon-btn flex flex-col items-center text-primary-text hover:text-accent p-2 transition duration-200" title="Bookmarks">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3-7 3V5z"></path></svg>
-                    <span class="text-xs mt-1 text-secondary-text">Bookmarks</span>
-                </button>
-            </div>
-
-        </div>
-    </div>
-    
-    <!-- Footer (Same as original) -->
-    <footer id="main-footer" class="pt-12 mt-12 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-10 border-b border-gray-700">
-                
-                <div class="col-span-2 md:col-span-2 lg:col-span-2">
-                    <h3 class="text-3xl font-serif font-bold mb-4 text-gold">MagazinePro</h3>
-                    <p class="text-sm leading-relaxed max-w-xs text-secondary-text">
-                        The premium destination for curated articles, in-depth reports, and editorial insights on global trends, technology, and culture.
-                    </p>
-                    <div class="flex space-x-4 rtl:space-x-reverse mt-6">
-                        <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Facebook" title="Facebook">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 5.23h3.3v4h-3.3a1.44 1.44 0 00-1.5 1.48v2.32h4.8l-.6 4h-4.2v9h-5v-9H7.6l.6-4h3.5V6.7c0-2.4 1.3-3.7 3.4-3.7h2.6v4z"></path></svg>
-                        </a>
-                        <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Twitter" title="Twitter">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 7.6c-.6.3-1.3.5-2.1.6.8-.5 1.4-1.2 1.7-2-.7.4-1.5.7-2.4.9C18.1 6.5 17 6 15.8 6c-2 0-3.6 1.7-3.6 3.7 0 .3 0 .6.1.9C9.2 10.3 5.9 8.3 3.7 5.1c-.3.5-.5 1.1-.5 1.7 0 1.3.7 2.4 1.7 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.5 1.6 1.8 2.8 3.5 3.1-1.3 1-3.2 1.6-5.2 1.6-.3 0-.7 0-1-.1C4.7 18.8 7 19.5 9.6 19.5c6.3 0 10.3-5.3 10.3-9.9 0-.2 0-.3 0-.5.7-.5 1.3-1.1 1.8-1.9z"></path></svg>
-                        </a>
-                        <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Instagram" title="Instagram">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864-4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07zm0 2.137c-3.141 0-3.535.013-4.793.07s-2.07.382-2.805 1.05c-.735.668-1.077 1.666-1.15 2.805-.057 1.258-.07 1.652-.07 4.793s.013 3.535.07 4.793c.073 1.139.415 2.137 1.15 2.805.735.668 1.666 1.077 2.805 1.15 1.258.057 1.652.07 4.793.07s3.535-.013 4.793-.07c1.139-.073 2.137-.415 2.805-1.15.668-.735 1.077-1.666 1.15-2.805.057-1.258.07-1.652.07-4.793s-.013-3.535-.07-4.793c-.073-1.139-.415-2.137-1.15-2.805-.668-.735-1.666-1.077-2.805-1.15-1.258-.057-1.652-.07-4.793-.07zm0 3.702a4.116 4.116 0 100 8.232 4.116 4.116 0 000-8.232zm0 2.137a1.98 1.98 0 110 3.96 1.98 1.98 0 010-3.96z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4 text-[#C19A6B]">
-  Categories
-</h4>
-
-
-                    <ul class="space-y-2">
-                        <li><a href="#" class="footer-link">Technology</a></li>
-                        <li><a href="#" class="footer-link">Fashion & Style</a></li>
-                        <li><a href="#" class="footer-link">Global Politics</a></li>
-                        <li><a href="#" class="footer-link">Culture & Arts</a></li>
-                        <li><a href="#" class="footer-link">Science</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="footer-link">Home</a></li>
-                        <li><a href="Magazine.html" class="footer-link">Magazine</a></li>
-                        <li><a href="blog.html" class="footer-link">Trendings</a></li>
-                        <li><a href="about.html" class="footer-link">About Us</a></li>
-                        <li><a href="contact.html" class="footer-link">Contact</a></li>
-                        <li><a href="dashboard.html" class="footer-link">Dashboard</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-span-2 md:col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4">Get Our Newsletter</h4>
-                    <p class="text-sm mb-4 text-secondary-text">
-                        Sign up for exclusive articles and updates.
-                    </p>
-                    <div class="flex flex-col space-y-3">
-                        <input type="email" placeholder="Your email address" aria-label="Email for Newsletter" class="p-3 text-sm rounded-lg bg-gray-800 border border-gray-700 focus:ring-1 focus:ring-gold focus:outline-none text-white placeholder-gray-400">
-                        <button class="bg-gold text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-200 shadow-md">
-                            Subscribe
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="py-4 text-center text-gray-500 text-xs">
-                &copy; 2025 MagazinePro. All rights reserved. | <span class="hover:text-gold transition duration-200">Legal Disclaimer.</span>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // JavaScript remains the same as your original
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.documentElement;
+            const controlBar = document.getElementById('control-bar');
 
             // --- 1. Theme Toggle & Persistence ---
             const themeToggle = document.getElementById('theme-toggle');
-            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
             const lightIcons = document.querySelectorAll('.light-icon');
             const darkIcons = document.querySelectorAll('.dark-icon');
 
@@ -755,118 +489,41 @@
             };
 
             if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-            if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
             initializeTheme();
 
-
-            // --- 2. Search Overlay ---
-            const searchOverlay = document.getElementById('search-overlay');
-            const searchOpenBtns = [document.getElementById('search-open'), document.getElementById('mobile-search-open')].filter(Boolean);
-            const searchCloseBtn = document.getElementById('search-close');
-            const searchSuggestBtn = document.getElementById('search-suggest');
-
-            const toggleSearch = (open) => {
-                if (open) {
-                    searchOverlay.classList.remove('hidden');
-                    setTimeout(() => searchOverlay.classList.remove('opacity-0'), 10); 
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    searchOverlay.classList.add('opacity-0');
-                    searchOverlay.addEventListener('transitionend', () => {
-                        searchOverlay.classList.add('hidden');
-                        document.body.style.overflow = '';
-                    }, { once: true });
-                }
-            };
-
-            searchOpenBtns.forEach(btn => btn.addEventListener('click', () => toggleSearch(true)));
-            if (searchCloseBtn) searchCloseBtn.addEventListener('click', () => toggleSearch(false));
-            if (searchOverlay) searchOverlay.addEventListener('click', (e) => {
-                if (e.target === searchOverlay) toggleSearch(false);
-            });
-            
-            // 404 page specific - search button
-            if (searchSuggestBtn) {
-                searchSuggestBtn.addEventListener('click', () => toggleSearch(true));
-            }
-
-
-            // --- 3. Mobile Menu Bottom Sheet Drawer ---
-            const menuDrawer = document.getElementById('mobile-menu-drawer');
-            const menuBackdrop = document.getElementById('drawer-backdrop');
-            const menuContent = document.getElementById('drawer-content');
-            const menuOpenBtn = document.getElementById('mobile-menu-open');
-            const menuCloseBtn = document.getElementById('mobile-menu-close');
-            const mobileHomesToggle = document.getElementById('mobile-homes-toggle');
-            const mobileHomesMenu = document.getElementById('mobile-homes-menu');
-            const homesIcon = document.getElementById('homes-icon');
-
-            const HIDDEN_CLASS = 'translate-y-[-100%]';
-
-            const openDrawer = () => {
-                menuDrawer.classList.remove('pointer-events-none');
-                menuContent.classList.remove(HIDDEN_CLASS);
-                menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
-                document.body.style.overflow = 'hidden';
-            };
-
-            const closeDrawer = () => {
-                menuContent.classList.add(HIDDEN_CLASS);
-                menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
-                menuContent.addEventListener('transitionend', () => {
-                    menuDrawer.classList.add('pointer-events-none');
-                    document.body.style.overflow = '';
-                }, { once: true });
-            };
-
-            if (menuOpenBtn) menuOpenBtn.addEventListener('click', openDrawer);
-            if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeDrawer);
-            if (menuBackdrop) menuBackdrop.addEventListener('click', closeDrawer);
-
-            // Mobile Dropdown Toggle
-            if (mobileHomesToggle) mobileHomesToggle.addEventListener('click', () => {
-                mobileHomesMenu.classList.toggle('hidden');
-                homesIcon.classList.toggle('rotate-180');
-            });
-
-            const mobileDashboardToggle = document.getElementById('mobile-dashboard-toggle');
-            const mobileDashboardMenu = document.getElementById('mobile-dashboard-menu');
-            const dashboardIcon = document.getElementById('dashboard-icon');
-
-            if (mobileDashboardToggle) {
-                mobileDashboardToggle.addEventListener('click', () => {
-                    mobileDashboardMenu.classList.toggle('hidden');
-                    dashboardIcon.classList.toggle('rotate-180');
-                });
-            }
-
-
-            // --- 4. Global Language Toggle (Globe Icon) ---
-            const langButton = document.getElementById('lang-icon');
+            // --- 2. RTL/Language Toggle ---
+            const langToggle = document.getElementById('lang-toggle');
 
             const toggleLanguage = () => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                const newLang = currentLang === 'en' ? 'ar' : 'en';
-
-                localStorage.setItem('language', newLang);
-
-                document.documentElement.setAttribute(
-                    'dir',
-                    newLang === 'ar' ? 'rtl' : 'ltr'
-                );
+                const currentDir = html.getAttribute('dir') || 'ltr';
+                const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+                
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('language-direction', newDir);
             };
 
-            if (langButton) langButton.addEventListener('click', toggleLanguage);
+            if (langToggle) langToggle.addEventListener('click', toggleLanguage);
 
-            const savedLang = localStorage.getItem('language') || 'en';
-            document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
-            
-const mobileLangButton = document.getElementById('mobile-lang-icon');
+            // Initialize language direction from localStorage
+            const savedDir = localStorage.getItem('language-direction') || 'ltr';
+            html.setAttribute('dir', savedDir);
 
-if (mobileLangButton) {
-    mobileLangButton.addEventListener('click', toggleLanguage);
-}
+            // --- 3. Control Bar Scroll Effect ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    controlBar.classList.add('scrolled');
+                } else {
+                    controlBar.classList.remove('scrolled');
+                }
+            });
 
+            // --- 4. Search Button (for demonstration) ---
+            const searchButton = document.getElementById('search-suggest');
+            if (searchButton) {
+                searchButton.addEventListener('click', () => {
+                    alert('Search functionality would open here. In a real implementation, this would open a search modal.');
+                });
+            }
         });
     </script>
 </body>

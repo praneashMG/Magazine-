@@ -56,7 +56,8 @@
 }
 
 #main-footer .footer-heading {
-    color: #FFFFFF; /* Clear, strong headings */
+        color: var(--color-accent) !important; /* GOLD */
+
 }
 
 #main-footer .footer-link {
@@ -646,12 +647,12 @@
     </div>
 </div>
 
-                    
+                                        <a href="about.html" class="nav-link">About</a>
+
                     <a href="Magazine.html" class="nav-link active">Magazine</a>
                     <a href="blog.html" class="nav-link">Trending</a>
                                         <a href="pricing.html" class="nav-link">Pricing</a>
 
-                    <a href="about.html" class="nav-link">About Us</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                <div class="dropdown-container">
     <button class="nav-link flex items-center text-primary-text" title="Dashboard Menu" aria-label="Dashboard Menu">
@@ -1174,11 +1175,12 @@
                         <a href="home2.html" class="block text-secondary-text hover:text-accent transition duration-200 text-base py-1 px-2">Home 2</a>
                     </div>
                 </div>
+                                <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About</a>
+
                    <a href="Magazine.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Magazine</a>
                 <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Trending</a>
                                 <a href="pricing.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Pricing</a>
 
-                <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">About Us</a>
                 <a href="contact.html   " class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2">Contact</a>
                 <div>
   <button class="block text-primary-text font-semibold text-lg hover:text-accent transition duration-200 py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle" title="Toggle Dashboard Menu" aria-label="Toggle Dashboard Menu">
@@ -1223,71 +1225,111 @@
     </div>
    
     <footer id="main-footer" class="pt-12 mt-12 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-10 border-b border-gray-700">
-                
-                <div class="col-span-2 md:col-span-2 lg:col-span-2">
-                    <h3 class="text-3xl font-serif font-bold mb-4 text-gold">MagazinePro</h3>
-                    <p class="text-sm leading-relaxed max-w-xs text-secondary-text">
-                        The premium destination for curated articles, in-depth reports, and editorial insights on global trends, technology, and culture.
-                    </p>
-                    <div class="flex space-x-4 rtl:space-x-reverse mt-6">
-                        <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Facebook" title="Facebook">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 5.23h3.3v4h-3.3a1.44 1.44 0 00-1.5 1.48v2.32h4.8l-.6 4h-4.2v9h-5v-9H7.6l.6-4h3.5V6.7c0-2.4 1.3-3.7 3.4-3.7h2.6v4z"></path></svg>
-                        </a>
-                        <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Twitter" title="Twitter">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 7.6c-.6.3-1.3.5-2.1.6.8-.5 1.4-1.2 1.7-2-.7.4-1.5.7-2.4.9C18.1 6.5 17 6 15.8 6c-2 0-3.6 1.7-3.6 3.7 0 .3 0 .6.1.9C9.2 10.3 5.9 8.3 3.7 5.1c-.3.5-.5 1.1-.5 1.7 0 1.3.7 2.4 1.7 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.5 1.6 1.8 2.8 3.5 3.1-1.3 1-3.2 1.6-5.2 1.6-.3 0-.7 0-1-.1C4.7 18.8 7 19.5 9.6 19.5c6.3 0 10.3-5.3 10.3-9.9 0-.2 0-.3 0-.5.7-.5 1.3-1.1 1.8-1.9z"></path></svg>
-                        </a>
-                        <a href="#" class="text-secondary-text hover:text-gold transition duration-200" aria-label="Instagram" title="Instagram">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864-4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07zm0 2.137c-3.141 0-3.535.013-4.793.07s-2.07.382-2.805 1.05c-.735.668-1.077 1.666-1.15 2.805-.057 1.258-.07 1.652-.07 4.793s.013 3.535.07 4.793c.073 1.139.415 2.137 1.15 2.805.735.668 1.666 1.077 2.805 1.15 1.258.057 1.652.07 4.793.07s3.535-.013 4.793-.07c1.139-.073 2.137-.415 2.805-1.15.668-.735 1.077-1.666 1.15-2.805-1.258-.057-1.652-.07-4.793-.07zm0 3.702a4.116 4.116 0 100 8.232 4.116 4.116 0 000-8.232zm0 2.137a1.98 1.98 0 110 3.96 1.98 1.98 0 010-3.96z"></path></svg>
-                        </a>
-                    </div>
-                </div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div class="col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4 text-[#C19A6B]">
-  Categories
-</h4>
+    <!-- GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 
+                gap-8 md:gap-y-10 pb-10 border-b border-gray-700">
 
+      <!-- BRAND -->
+      <div class="lg:col-span-2">
+        <h3 class="text-3xl font-serif font-bold mb-4 text-gold">
+          MagazinePro
+        </h3>
 
-                    <ul class="space-y-2">
-                        <li><a href="#" class="footer-link">Technology</a></li>
-                        <li><a href="#" class="footer-link">Fashion & Style</a></li>
-                        <li><a href="#" class="footer-link">Global Politics</a></li>
-                        <li><a href="#" class="footer-link">Culture & Arts</a></li>
-                        <li><a href="#" class="footer-link">Science</a></li>
-                    </ul>
-                </div>
+        <p class="text-sm leading-relaxed max-w-sm text-secondary-text">
+          The premium destination for curated articles, in-depth reports, and editorial insights
+          on global trends, technology, and culture.
+        </p>
 
-                <div class="col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="footer-link">Home</a></li>
-                        <li><a href="Magazine.html" class="footer-link">Magazine</a></li>
-                        <li><a href="blog.html" class="footer-link">Trendings</a></li>
-                        <li><a href="about.html" class="footer-link">About Us</a></li>
-                        <li><a href="contact.html" class="footer-link">Contact</a></li>
-                        <li><a href="dashboard.html" class="footer-link">Dashboard</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-2 md:col-span-1">
-                    <h4 class="footer-heading font-semibold text-lg mb-4">Get Our Newsletter</h4>
-                    <p class="text-sm mb-4 text-secondary-text">
-                        Sign up for exclusive articles and updates.
-                    </p>
-                    <div class="flex flex-col space-y-3">
-                        <input type="email" placeholder="Your email address" aria-label="Email for Newsletter" class="p-3 text-sm rounded-lg bg-gray-800 border border-gray-700 focus:ring-1 focus:ring-gold focus:outline-none text-white placeholder-gray-400">
-                        <button class="bg-gold text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-200 shadow-md" title="Subscribe" aria-label="Subscribe">
-                            Subscribe
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="py-4 text-center text-gray-500 text-xs">
-                &copy; 2025 MagazinePro. All rights reserved. | <span class="hover:text-gold transition duration-200">Legal Disclaimer.</span>
-            </div>
+        <div class="flex space-x-4 mt-6">
+          <a href="#" class="text-secondary-text hover:text-gold transition" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.7 5.23h3.3v4h-3.3a1.44 1.44 0 00-1.5 1.48v2.32h4.8l-.6 4h-4.2v9h-5v-9H7.6l.6-4h3.5V6.7c0-2.4 1.3-3.7 3.4-3.7h2.6v4z"/>
+            </svg>
+          </a>
+
+          <a href="#" class="text-secondary-text hover:text-gold transition" aria-label="Twitter">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21.5 7.6c-.6.3-1.3.5-2.1.6.8-.5 1.4-1.2 1.7-2-.7.4-1.5.7-2.4.9C18.1 6.5 17 6 15.8 6c-2 0-3.6 1.7-3.6 3.7 0 .3 0 .6.1.9C9.2 10.3 5.9 8.3 3.7 5.1c-.3.5-.5 1.1-.5 1.7 0 1.3.7 2.4 1.7 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.5 1.6 1.8 2.8 3.5 3.1-1.3 1-3.2 1.6-5.2 1.6-.3 0-.7 0-1-.1C4.7 18.8 7 19.5 9.6 19.5c6.3 0 10.3-5.3 10.3-9.9v-.5c.7-.5 1.3-1.1 1.8-1.9z"/>
+            </svg>
+          </a>
+
+          <a href="#" class="text-secondary-text hover:text-gold transition" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.253.155 4.717 1.439 4.864 4.849.06 1.266.07 1.646.07 4.85s-.01 3.584-.07 4.85c-.147 3.41-1.611 4.694-4.864 4.849-1.266.06-1.646.07-4.85.07s-3.584-.01-4.85-.07c-3.253-.155-4.717-1.439-4.864-4.849-.06-1.266-.07-1.646-.07-4.85s.01-3.584.07-4.85c.147-3.41 1.611-4.694 4.864-4.849 1.266-.06 1.646-.07 4.85-.07z"/>
+            </svg>
+          </a>
         </div>
-    </footer>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div>
+        <h4 class="footer-heading font-semibold text-lg mb-4 text-gold">
+          Categories
+        </h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link">Technology</a></li>
+          <li><a href="#" class="footer-link">Fashion & Style</a></li>
+          <li><a href="#" class="footer-link">Global Politics</a></li>
+          <li><a href="#" class="footer-link">Culture & Arts</a></li>
+          <li><a href="#" class="footer-link">Science</a></li>
+        </ul>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div>
+        <h4 class="footer-heading font-semibold text-lg mb-4 text-gold">
+          Quick Links
+        </h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="Magazine.html" class="footer-link">Magazine</a></li>
+          <li><a href="blog.html" class="footer-link">Trendings</a></li>
+          <li><a href="about.html" class="footer-link">About</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+          <li><a href="dashboard.html" class="footer-link">Dashboard</a></li>
+        </ul>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div>
+        <h4 class="footer-heading font-semibold text-lg mb-4 text-gold">
+          Get Our Newsletter
+        </h4>
+        <p class="text-sm mb-4 text-secondary-text">
+          Sign up for exclusive articles and updates.
+        </p>
+
+        <div class="flex flex-col space-y-3">
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="p-3 text-sm rounded-lg bg-gray-800 border border-gray-700
+                   focus:ring-1 focus:ring-gold focus:outline-none
+                   text-white placeholder-gray-400"
+          />
+          <button
+  class="bg-white text-black font-semibold py-3 rounded-lg
+         hover:bg-gray-100 transition duration-200 shadow-md">
+  Subscribe
+</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="py-4 text-center text-gray-500 text-xs">
+      © 2025 MagazinePro. All rights reserved.
+      <span class="hover:text-gold transition cursor-pointer">
+        | Legal Disclaimer
+      </span>
+    </div>
+
+  </div>
+</footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.documentElement;
